@@ -20,7 +20,22 @@ public class UsuarioService {
     }
 
     public Object add(Request request, Response response) {
+        String primeiroNome = request.queryParams("primeiroNome");
+        String segundoNome = request.queryParams("segundoNome");
+        int idade = Integer.parseInt(request.queryParams("idade"));
+        String senha = request.queryParams("senha");
+        String email = request.queryParams("email");
+        String sexo = request.queryParams("sexo");
 
+        int id = usuarioDAO.getMaxCodigo() + 1;
+
+        Usuario usuario = new Usuario(id, primeiroNome, segundoNome, idade, senha, email, sexo);
+
+        usuarioDAO.inserirUsuario(usuario);
+
+        response.status(201);
+
+        return id;
     }
 
     public Object get(Request request, Response response) {
