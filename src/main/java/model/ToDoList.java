@@ -6,7 +6,7 @@ public class ToDoList {
     //----------------------------Atributos--------------------------//
 
     private int idToDoList;
-    private String[] anotacoes;
+    private String anotacoes;
     private Date dataDeCriacao;
 
     //----------------------------Metodos Especiais-------------------------//

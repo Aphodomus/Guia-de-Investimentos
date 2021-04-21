@@ -19,7 +19,7 @@ public class UsuarioService {
         }
     }
 
-    public Object add(Request request, Response response) {
+    public Object addUsuario(Request request, Response response) {
         String primeiroNome = request.queryParams("primeiroNome");
         String segundoNome = request.queryParams("segundoNome");
         int idade = Integer.parseInt(request.queryParams("idade"));
