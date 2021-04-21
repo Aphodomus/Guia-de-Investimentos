@@ -20,7 +20,7 @@
                         <form id="login-form" class="form" method="post" onsubmit="loginUser (this)">
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group">
-                                <label for="username" class="text-info">Usuário</label><br>
+                                <label for="username" class="text-info">E-mail</label><br>
                                 <input type="text" name="username" id="username" class="form-control">
                             </div>
                             <div class="form-group">
@@ -55,28 +55,44 @@
                         <form id="login-form" class="form" method="post" onsubmit="loginUser (this)">
                             <h3 class="text-center text-info">Novo usuário</h3>
                             <div class="form-group">
-                                <label for="login" class="text-info">Usuário</label><br>
-                                <input type="text" name="txt_login" id="txt_login" class="form-control">
+                                <label for="email" class="text-info" >E-mail</label><br>
+                                <input type="text" name="txt_login" id="txt_login" placeholder="nome@exemplo.com" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="login" class="text-info">Placa</label><br>
-                                <input type="text" name="txt_login" id="txt_login" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="nome" class="text-info">Nome completo</label><br>
-                                <input type="text" name="txt_nome" id="txt_nome" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="email" class="text-info">Telefone</label><br>
-                                <input type="text" name="txt_email" id="txt_email" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="senha" class="text-info">Senha</label><br>
-                                <input type="password" name="txt_senha" id="txt_senha" class="form-control">
+                                <label for="login" class="text-info">Senha</label><br>
+                                <input type="text" name="txt_senha" id="txt_login" placeholder="francisco123" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="senha2" class="text-info">Confirmação de Senha</label><br>
-                                <input type="password" name="txt_senha2" id="txt_senha2" class="form-control">
+                                <input type="password" name="txt_senha2" id="txt_senha2" placeholder="francisco123" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="primeironome" class="text-info">Primeiro nome</label><br>
+                                <input type="text" name="txt_nome" id="txt_nome" placeholder="Francisco" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="segundonome" class="text-info">Segundo nome</label><br>
+                                <input type="text" name="txt_email" id="txt_email" placeholder="Santos" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="datanascimento" class="text-info">Data de nascimento</label><br>
+                                <input class="form-control" type="date" value="1956-02-12" id="example-date-input">
+                            </div>
+                            <div class="form-group">
+                                <label for="sexo" class="text-info">Sexo</label><br>
+                                <div class="col-sm-10">
+                                    <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="opcao1" checked>
+                                    <label class="form-check-label" for="gridRadios1">
+                                        Masculino
+                                    </label>
+                                    </div>
+                                    <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="opcao2">
+                                    <label class="form-check-label" for="gridRadios2">
+                                        Feminino
+                                    </label>
+                                </div>
                             </div>
                         </form>
                     </div>
