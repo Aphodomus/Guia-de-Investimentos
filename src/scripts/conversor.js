@@ -368,8 +368,8 @@ function newCurrenciesListItem (currency) {
     );
 }
 
-/*
-var saida = [];
+
+/* var saida = [];
 
 fetch("https://bloomberg-market-and-financial-news.p.rapidapi.com/market/get-cross-currencies?id=aed%252Caud%252Cbrl%252Ccad%252Cchf%252Ccnh%252Ccny%252Ccop%252Cczk%252Cdkk%252Ceur%252Cgbp%252Chkd%252Chuf%252Cidr%252Cils%252Cinr%252Cjpy%252Ckrw%252Cmxn%252Cmyr%252Cnok%252Cnzd%252Cphp%252Cpln%252Crub%252Csek%252Csgd%252Cthb%252Ctry%252Ctwd%252Cusd%252Czar", {
 	"method": "GET",
@@ -403,8 +403,8 @@ fetch("https://bloomberg-market-and-financial-news.p.rapidapi.com/market/get-cro
 })
 .catch(err => {
 	console.log(err);
-});
-*/
+}); */
+
 
 
 populateAddCurrencyList();
