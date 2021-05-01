@@ -1,63 +1,56 @@
-package model;
+import java.lang.String;
 
-import java.util.Date;
 
-public class ToDoList {
-    //----------------------------Atributos--------------------------//
+public class Todolist{
 
-    private int idToDoList;
-    private String[] anotacoes;
-    private Date dataDeCriacao;
+    private int Id;
+    private String Nome;
+    private String Usuario;
 
-    //----------------------------Metodos Especiais-------------------------//
-
-    public ToDoList() {
-        this.idToDoList = -1;
-        this.anotacoes = null;
-        this.dataDeCriacao = null;
+    public Todolist(){
+        this.Id = -1;
+        this.Nome = "";
+        this.Usuario ="";
     }
 
-    public ToDoList(int idToDoList, String[] anotacoes, Date dataDeCriacao) {
-        setIdToDoList(idToDoList);
-        setAnotacoes(anotacoes);
-        setDataDeCriacao(dataDeCriacao);
+    //----Metodos especiais-------//
+
+   public Todolist(int Id, String Nome, String Usuario){
+        setId(Id);
+        setNome(Nome);
+        setUsuario(Usuario);
+   }
+
+    //----Metodos get------//
+
+    public int getId(){
+        return this.Id;
     }
 
-    public int getIdToDoList() {
-        return this.idToDoList;
+    public String getNome(){
+        return this.Nome;
     }
 
-    public void setIdToDoList(int idToDoList) {
-        this.idToDoList = idToDoList;
+    public String getUsuario(){
+        return this.Usuario;
     }
 
-    public String[] getAnotacoes() {
-        return this.anotacoes;
+    //----Metodos set------//
+
+    public void setId(int Id){
+        this.Id = Id;
     }
 
-    public void setAnotacoes(String[] anotacoes) {
-        this.anotacoes = anotacoes;
+    public void setNome(String Nome){
+        if (nome.length()>=3){
+            this.nome = nome;
+        }
+        else System.out.print("Erro na atribuicao do nome");
     }
 
-    public Date getDataDeCriacao() {
-        return this.dataDeCriacao;
+    public void setUsuario(String Usuario){
+        this.Usuario = Usuario;
     }
 
-    public void setDataDeCriacao(Date dataDeCriacao) {
-        this.dataDeCriacao = dataDeCriacao;
-    }
 
-    //----------------------------Funcoes e Metodos-------------------------//
-
-    //Metodo sobreposto que e executado quando um objeto precisa ser mostrado na forma de String
-    @Override
-    public String toString() {
-        return "ToDoList [idToDoList = " + idToDoList + ", anotacoes = " + anotacoes + ", dataDeCriacao = " + dataDeCriacao + "]";
-    }
-
-    //Metodo sobreposto para verificar se 2 objetos sao iguais
-    @Override
-	public boolean equals(Object obj) {
-		return (this.getIdToDoList() == ((ToDoList) obj).getIdToDoList());
-	}	
 }
