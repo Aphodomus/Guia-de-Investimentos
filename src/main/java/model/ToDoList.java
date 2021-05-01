@@ -1,13 +1,15 @@
+package model;
+
 import java.lang.String;
 
 
-public class Todolist{
+public class ToDoList{
 
     private int Id;
     private String Nome;
     private String Usuario;
 
-    public Todolist(){
+    public ToDoList(){
         this.Id = -1;
         this.Nome = "";
         this.Usuario ="";
@@ -15,7 +17,7 @@ public class Todolist{
 
     //----Metodos especiais-------//
 
-   public Todolist(int Id, String Nome, String Usuario){
+   public ToDoList(int Id, String Nome, String Usuario){
         setId(Id);
         setNome(Nome);
         setUsuario(Usuario);
@@ -42,8 +44,8 @@ public class Todolist{
     }
 
     public void setNome(String Nome){
-        if (nome.length()>=3){
-            this.nome = nome;
+        if (Nome.length()>=3){
+            this.Nome = Nome;
         }
         else System.out.print("Erro na atribuicao do nome");
     }
