@@ -46,7 +46,11 @@ public class Usuario {
     }
 
     public void setNome(String Nome) {
-        this.Nome = Nome;
+        if (Nome.length() > 2 && Nome.length() <= 1000) {
+            this.Nome = Nome;
+        } else {
+            System.out.println("Erro !!! Nome menor ou igual a 2 OU maior que 1000 caracteres");
+        }
     }
 
     public String getSobreNome() {
@@ -54,7 +58,11 @@ public class Usuario {
     }
 
     public void setSobreNome(String Sobrenome) {
-        this.Sobrenome = Sobrenome;
+        if (Sobrenome.length() > 2 && Sobrenome.length() <= 1000) {
+            this.Sobrenome = Sobrenome;
+        } else {
+            System.out.println("Erro !!! Sobrenome menor ou igual a 2 OU maior que 1000 caracteres");
+        }
     }
 
     public int getIdade() {
@@ -62,7 +70,11 @@ public class Usuario {
     }
 
     public void setIdade(int Idade) {
-        this.Idade = Idade;
+        if (Idade > 9 && Idade < 120) {
+            this.Idade = Idade;
+        } else {
+            System.out.println("Erro !!! Idade menor 10 OU maior que 120 ");
+        }
     }
 
     public String getSenha() {
@@ -86,7 +98,11 @@ public class Usuario {
     }
 
     public void setSexo(String Sexo) {
-        this.Sexo = Sexo;
+        if (Sexo == "Masculino" || Sexo == "Feminino") {
+            this.Sexo = Sexo;
+        } else {
+            System.out.println("Erro !!! Sexo diferente de Masculino OU Feminino ");
+        }
     }
 
     //----------------------------Funcoes e Metodos-------------------------//
