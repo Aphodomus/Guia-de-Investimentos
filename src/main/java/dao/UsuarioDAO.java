@@ -56,9 +56,9 @@ public class UsuarioDAO {
 
 		try {  
 			Statement st = conexao.createStatement();
-			st.executeUpdate("INSERT INTO usuario (id, primeiroNome, segundoNome, idade, senha, email, sexo) "
-					       + "VALUES (" + usuario.getId() + ", '" + usuario.getPrimeiroNome() + "', '"  
-					       + usuario.getSegundoNome() + "', '" + usuario.getIdade() + "', '" + usuario.getSenha() 
+			st.executeUpdate("INSERT INTO USUARIO (Id, Nome, Sobrenome, Idade, Senha, Email, Sexo) "
+					       + "VALUES (" + usuario.getId() + ", '" + usuario.getSobreNome() + "', '"  
+					       + usuario.getNome() + "', '" + usuario.getIdade() + "', '" + usuario.getSenha() 
                            + "', '" + usuario.getEmail() + "', '" + usuario.getSexo() +"');");
 			st.close();
 			status = true;
@@ -80,9 +80,9 @@ public class UsuarioDAO {
 
 		try {  
 			Statement st = conexao.createStatement();
-			String sql = "UPDATE usuario SET primeiroNome = '" + usuario.getPrimeiroNome() + "', segundoNome = '"  
-				       + usuario.getSegundoNome() + "', idade = '" + usuario.getIdade() + "', senha = '" + usuario.getSenha() + 
-                       "', email = '" + usuario.getEmail() + "', sexo = '" + usuario.getSexo() + "'" + " WHERE id = " + usuario.getId();
+			String sql = "UPDATE USUARIO SET Nome = '" + usuario.getNome() + "', Sobrenome = '"  
+				       + usuario.getSobreNome() + "', Idade = '" + usuario.getIdade() + "', Senha = '" + usuario.getSenha() + 
+                       "', Email = '" + usuario.getEmail() + "', Sexo = '" + usuario.getSexo() + "'" + " WHERE Id = " + usuario.getId();
 			st.executeUpdate(sql);
 			st.close();
 			status = true;
@@ -100,7 +100,7 @@ public class UsuarioDAO {
 
 		try {  
 			Statement st = conexao.createStatement();
-			st.executeUpdate("DELETE FROM usuario WHERE id = " + id);
+			st.executeUpdate("DELETE FROM USUARIO WHERE Id = " + id);
 			st.close();
 			status = true;
 
@@ -122,15 +122,15 @@ public class UsuarioDAO {
 		
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			ResultSet rs = st.executeQuery("SELECT * FROM usuario");		
+			ResultSet rs = st.executeQuery("SELECT * FROM USUARIO");		
 	         if(rs.next()){
 	             rs.last();
 	             usuarios = new Usuario[rs.getRow()];
 	             rs.beforeFirst();
 
 	             for(int i = 0; rs.next(); i++) {
-	                usuarios[i] = new Usuario(rs.getInt("id"), rs.getString("primeiroNome"), 
-	                		                  rs.getString("segundoNome"), rs.getInt("idade"), rs.getString("senha"), rs.getString("email"), rs.getString("sexo"));
+	                usuarios[i] = new Usuario(rs.getInt("Id"), rs.getString("Nome"), 
+	                		                  rs.getString("Sobrenome"), rs.getInt("Idade"), rs.getString("Senha"), rs.getString("Email"), rs.getString("Sexo"));
 	             }
 	          }
 	          st.close();
@@ -146,15 +146,15 @@ public class UsuarioDAO {
 		
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			ResultSet rs = st.executeQuery("SELECT * FROM usuario WHERE usuario.idade >= 60");		
+			ResultSet rs = st.executeQuery("SELECT * FROM USUARIO WHERE USUARIO.Idade >= 60");		
 	         if(rs.next()){
 	             rs.last();
 	             usuarios = new Usuario[rs.getRow()];
 	             rs.beforeFirst();
 
 	             for(int i = 0; rs.next(); i++) {
-		                usuarios[i] = new Usuario(rs.getInt("id"), rs.getString("primeiroNome"), 
-                                                  rs.getString("segundoNome"), rs.getInt("idade"), rs.getString("senha"), rs.getString("email"), rs.getString("sexo"));
+		                usuarios[i] = new Usuario(rs.getInt("Id"), rs.getString("Nome"), 
+                                                  rs.getString("Sobrenome"), rs.getInt("Idade"), rs.getString("Senha"), rs.getString("Email"), rs.getString("Sexo"));
 	             }
 	          }
 	          st.close();
@@ -170,11 +170,11 @@ public class UsuarioDAO {
 		
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			ResultSet rs = st.executeQuery("SELECT * FROM usuario WHERE usuario.id = " + id);
+			ResultSet rs = st.executeQuery("SELECT * FROM USUARIO WHERE USUARIO.Id = " + id);
 
 			if (rs.next()) {
-				usuarios = new Usuario(rs.getInt("id"), rs.getString("primeiroNome"), 
-                                       rs.getString("segundoNome"), rs.getInt("idade"), rs.getString("senha"), rs.getString("email"), rs.getString("sexo"));
+				usuarios = new Usuario(rs.getInt("Id"), rs.getString("Nome"), 
+                                       rs.getString("Sobrenome"), rs.getInt("Idade"), rs.getString("Senha"), rs.getString("Email"), rs.getString("Sexo"));
 			}
 
 	        st.close();

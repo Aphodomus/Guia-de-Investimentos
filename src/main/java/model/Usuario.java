@@ -5,7 +5,7 @@ public class Usuario {
 
     private int Id;
     private String Nome;
-    private String SobreNome;
+    private String Sobrenome;
     private int Idade;
     private String Senha;
     private String Email;
@@ -16,19 +16,19 @@ public class Usuario {
     public Usuario() {
         this.Id = -1;
         this.Nome = "a";
-        this.SobreNome = "b";
+        this.Sobrenome = "b";
         this.Idade = 0;
         this.Senha = "-";
         this.Email = "@";
         this.Sexo = "_";
     }
 
-    public Usuario(int Id, String Nome, String SobreNome, int Idade, String Senha, String Email, String Sexo) {
+    public Usuario(int Id, String Nome, String Sobrenome, int Idade, String Senha, String Email, String Sexo) {
         setId(Id);
         setEmail(Email);
         setIdade(Idade);
         setNome(Nome);
-        setSobreNome(SobreNome);
+        setSobreNome(Sobrenome);
         setSenha(Senha);
         setSexo(Sexo);
     }
@@ -50,11 +50,11 @@ public class Usuario {
     }
 
     public String getSobreNome() {
-        return this.SobreNome;
+        return this.Sobrenome;
     }
 
-    public void setSobreNome(String SobreNome) {
-        this.SobreNome = SobreNome;
+    public void setSobreNome(String Sobrenome) {
+        this.Sobrenome = Sobrenome;
     }
 
     public int getIdade() {
@@ -94,7 +94,7 @@ public class Usuario {
     //Metodo sobreposto que e executado quando um objeto precisa ser mostrado na forma de String
     @Override
     public String toString() {
-        return "Usuario [Id = " + Id + ", Nome = " + Nome + ", SobreNome = " + SobreNome + ", Idade = " + Idade + ", Senha = " + Senha + ", Email = " + Email + ", Sexo = " + Sexo +"]";
+        return "Usuario [Id = " + Id + ", Nome = " + Nome + ", Sobrenome = " + Sobrenome + ", Idade = " + Idade + ", Senha = " + Senha + ", Email = " + Email + ", Sexo = " + Sexo +"]";
     }
 
     //Metodo sobreposto para verificar se 2 objetos sao iguais
