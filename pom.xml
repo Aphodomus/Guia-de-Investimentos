@@ -3,16 +3,6 @@
   <groupId>GuiaDeInvestimentos</groupId>
   <artifactId>GuiaDeInvestimentos</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <build>
-    <plugins>
-        <plugin>
-            <configuration>
-              <source>1.8</source>
-              <target>1.8</target>
-            </configuration>
-       </plugin>
-    </plugins>
-</build>
   <dependencies>
     <dependency>
       <groupId>com.sparkjava</groupId>
