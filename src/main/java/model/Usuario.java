@@ -3,84 +3,90 @@ package model;
 public class Usuario {
     //----------------------------Atributos--------------------------//
 
-    private int id;
-    private String primeiroNome;
-    private String segundoNome;
-    private int idade;
-    private String senha;
-    private String email;
-    private String sexo;
+    private int Id;
+    private String Nome;
+    private String SobreNome;
+    private int Idade;
+    private String Senha;
+    private String Email;
+    private String Sexo;
 
     //----------------------------Metodos Especiais-------------------------//
 
     public Usuario() {
-        this.id = -1;
-        this.primeiroNome = "a";
-        this.segundoNome = "b";
-        this.idade = 0;
-        this.senha = "-";
-        this.email = "@";
-        this.sexo = "_";
+        this.Id = -1;
+        this.Nome = "a";
+        this.SobreNome = "b";
+        this.Idade = 0;
+        this.Senha = "-";
+        this.Email = "@";
+        this.Sexo = "_";
     }
 
-    public Usuario(int id, String primeiroNome, String segundoNome, int idade, String senha, String email, String sexo) {
-
+    public Usuario(int Id, String Nome, String SobreNome, int Idade, String Senha, String Email, String Sexo) {
+        setId(Id);
+        setEmail(Email);
+        setIdade(Idade);
+        setNome(Nome);
+        setSobreNome(SobreNome);
+        setSenha(Senha);
+        setSexo(Sexo);
     }
 
     public int getId() {
-        return this.id;
+        return this.Id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int Id) {
+        this.Id = Id;
     }
 
-    public String getPrimeiroNome() {
-        return this.primeiroNome;
+    public String getNome() {
+        return this.Nome;
     }
 
-    public void setPrimeiroNome(String primeiroNome) {
-        this.primeiroNome = primeiroNome;
+    public void setNome(String Nome) {
+        this.Nome = Nome;
     }
 
-    public String getSegundoNome() {
-        return this.segundoNome;
+    public String getSobreNome() {
+        return this.SobreNome;
     }
 
-    public void setSegundoNome(String segundoNome) {
-        this.segundoNome = segundoNome;
+    public void setSobreNome(String SobreNome) {
+        this.SobreNome = SobreNome;
     }
 
     public int getIdade() {
-        return this.idade;
+        return this.Idade;
     }
 
-    public void setIdade(int idade) {
-        this.idade = idade;
+    public void setIdade(int Idade) {
+        this.Idade = Idade;
     }
 
     public String getSenha() {
-        return this.senha;
+        return this.Senha;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setSenha(String Senha) {
+        this.Senha = Senha;
     }
 
     public String getEmail() {
-        return this.email;
+        return this.Email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail(String Email) {
+        this.Email = Email;
     }
 
     public String getSexo() {
-        return this.sexo;
+        return this.Sexo;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setSexo(String Sexo) {
+        this.Sexo = Sexo;
     }
 
     //----------------------------Funcoes e Metodos-------------------------//
@@ -88,7 +94,7 @@ public class Usuario {
     //Metodo sobreposto que e executado quando um objeto precisa ser mostrado na forma de String
     @Override
     public String toString() {
-        return "Usuario [id = " + id + ", primeiroNome = " + primeiroNome + ", segundoNome = " + segundoNome + ", idade = " + idade + ", senha = " + senha + ", email = " + email + ", sexo = " + sexo +"]";
+        return "Usuario [Id = " + Id + ", Nome = " + Nome + ", SobreNome = " + SobreNome + ", Idade = " + Idade + ", Senha = " + Senha + ", Email = " + Email + ", Sexo = " + Sexo +"]";
     }
 
     //Metodo sobreposto para verificar se 2 objetos sao iguais

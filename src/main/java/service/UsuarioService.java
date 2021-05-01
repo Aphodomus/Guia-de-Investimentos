@@ -20,37 +20,37 @@ public class UsuarioService {
     }
 
     public Object addUsuario(Request request, Response response) {
-        String primeiroNome = request.queryParams("primeiroNome");
-        String segundoNome = request.queryParams("segundoNome");
-        int idade = Integer.parseInt(request.queryParams("idade"));
-        String senha = request.queryParams("senha");
-        String email = request.queryParams("email");
-        String sexo = request.queryParams("sexo");
+        String Nome = request.queryParams("Nome");
+        String SobreNome = request.queryParams("SobreNome");
+        int Idade = Integer.parseInt(request.queryParams("Idade"));
+        String Senha = request.queryParams("Senha");
+        String Email = request.queryParams("Email");
+        String Sexo = request.queryParams("Sexo");
 
-        int id = usuarioDAO.getMaxCodigo() + 1;
+        int Id = usuarioDAO.getMaxCodigo() + 1;
 
-        Usuario usuario = new Usuario(id, primeiroNome, segundoNome, idade, senha, email, sexo);
+        Usuario usuario = new Usuario(Id, Nome, SobreNome, Idade, Senha, Email, Sexo);
 
         usuarioDAO.inserirUsuario(usuario);
 
         response.status(201);
 
-        return id;
+        return Id;
     }
 
-    public Object get(Request request, Response response) {
-
-    }
-
-    public Object update(Request request, Response response) {
+    public Object getUsuario(Request request, Response response) {
 
     }
 
-    public Object remove(Request request, Response response) {
+    public Object updateUsuario(Request request, Response response) {
 
     }
 
-    public Object getAll(Request request, Response response) {
+    public Object removeUsuario(Request request, Response response) {
+
+    }
+
+    public Object getAllUsuario(Request request, Response response) {
 
     }
 }
