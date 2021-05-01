@@ -102,13 +102,29 @@ public class UsuarioService {
     }
 
     public Object getAllUsuario(Request request, Response response) {
-        StringBuffer returnValue = new StringBuffer("<livros type=\"array\">");
+        StringBuffer returnValue = new StringBuffer("<usuarios type=\"array\">");
 
         if (usuarioDAO.getUsuarios() != null) {
-
+            for (Usuario usuario : usuarioDAO.getUsuarios()) {
+                returnValue.append("\n<usuario>\n" +
+                                        "\t<id>" + usuario.getId() + "</id>\n" +
+                                        "\t<nome>" + usuario.getNome() + "</nome>\n" +
+                                        "\t<sobrenome>" + usuario.getSobreNome() + "</sobrenome>\n" +
+                                        "\t<idade>" + usuario.getIdade() + "</idade>\n" +
+                                        "\t<sexo>" + usuario.getSexo() + "</sexo>\n" +
+                                        "\t<senha>" + usuario.getSenha() + "</senha>\n" +
+                                        "\t<email>" + usuario.getEmail() + "</email>\n" +
+                                    "</usuario>\n");
+            }
         } else {
             response.status(404); // 404 Erro
-            System.out.println("Lista de ")/ 
+            System.out.println("Lista de Usuarios vazia");
         }
+
+        returnValue.append("</usuarios>");
+        response.header("Content-Type", "application/xml");
+	    response.header("Content-Encoding", "UTF-8");
+
+        return returnValue.toString();
     }
 }
