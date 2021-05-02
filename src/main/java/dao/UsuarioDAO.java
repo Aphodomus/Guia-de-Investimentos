@@ -16,13 +16,13 @@ public class UsuarioDAO {
 	}
 
     public boolean conectar() {
-		String driverName = "org.postgresql.Driver";                    
+		String driverName = "org.postgresql.Driver";                                 
 		String serverName = "localhost"; // Nome da azure que ela vai nos fornecer
-		String mydatabase = "aindanaodefinido"; // Eu tenho que criar na azure
+		String mydatabase = "teste01"; // Eu tenho que criar na azure
 		int porta = 5432; // Vou escolher na azure
-		String url = "jdbc:postgresql:// " + serverName + ":" + porta +"/" + mydatabase + "?gssEncMode=disable"; // 
-		String username = "aindanaodefinido";
-		String password = "aindanaodefinido";
+		String url = "jdbc:postgresql://" + serverName + ":" + porta +"/" + mydatabase; //+ "?gssEncMode=disable"; 
+		String username = "postgres";
+		String password = "truta74822";
 		boolean status = false;
 
 		try {
