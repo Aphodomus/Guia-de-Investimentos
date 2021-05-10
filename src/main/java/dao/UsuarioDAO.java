@@ -56,10 +56,10 @@ public class UsuarioDAO {
 
 		try {  
 			Statement st = conexao.createStatement();
-			st.executeUpdate("INSERT INTO USUARIO (Id, Nome, Sobrenome, Idade, Senha, Email, Sexo) "
-					       + "VALUES (" + usuario.getId() + ", '" + usuario.getSobreNome() + "', '"  
-					       + usuario.getNome() + "', '" + usuario.getIdade() + "', '" + usuario.getSenha() 
-                           + "', '" + usuario.getEmail() + "', '" + usuario.getSexo() +"');");
+			st.executeUpdate("INSERT INTO usuario (id, sexo, senha, idade, email, nome, sobrenome) "
+					       + "VALUES (" + usuario.getId() + ", '" + usuario.getSexo() + "', '"  
+					       + usuario.getSenha() + "', '" + usuario.getIdade() + "', '" + usuario.getEmail()
+                           + "', '" + usuario.getNome()  + "', '" + usuario.getSobreNome() +"');");
 			st.close();
 			status = true;
 

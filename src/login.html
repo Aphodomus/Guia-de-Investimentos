@@ -52,7 +52,7 @@
                 </div>
                 <div class="modal-body">
                     <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" method="post" o>
+                        <form id="login-form" class="form" method="post" action="http://localhost:6789/usuario" >
                             <h3 class="text-center text-info">Novo usuário</h3>
                             <div class="form-group">
                                 <label for="email" class="text-info" >E-mail</label><br>
@@ -76,30 +76,34 @@
                             </div>
                             <div class="form-group">
                                 <label for="datanascimento" class="text-info">Data de nascimento</label><br>
-                                <input class="form-control" name="DataNascimento" type="date" value="1956-02-12" id="example-date-input">
+                                <input class="form-control" name="Idade" type="date" data-date-format="DD MMMM YYYY" value="1956-02-12" id="example-date-input">
                             </div>
                             <div class="form-group">
                                 <label for="sexo" class="text-info">Sexo</label><br>
                                 <div class="col-sm-10">
                                     <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="opcao1" checked>
+                                    <input class="form-check-input" type="radio" name="Sexo" id="gridRadios1" value="opcao1" checked>
                                     <label class="form-check-label" for="gridRadios1">
                                         Masculino
                                     </label>
                                     </div>
                                     <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="opcao2">
+                                    <input class="form-check-input" type="radio" name="Sexo" id="gridRadios2" value="opcao2">
                                     <label class="form-check-label" for="gridRadios2">
                                         Feminino
                                     </label>
                                 </div>
                             </div>
+
+                            <input type="submit" value="cadastrar" class="input--main__style input--button">
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                <button type="submit" value="salvar" id="btn_salvar" class="btn btn-danger btn-md">Salvar</button>
+                            </div>
+
                         </form>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" id="btn_salvar" class="btn btn-danger btn-md">Salvar</button>
                 </div>
             </div>
         </div>

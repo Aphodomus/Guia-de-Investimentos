@@ -5,6 +5,11 @@ import model.Usuario;
 
 import spark.Request;
 import spark.Response;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class UsuarioService {
     
@@ -22,10 +27,12 @@ public class UsuarioService {
     public Object addUsuario(Request request, Response response) {
         String Nome = request.queryParams("Nome");
         String Sobrenome = request.queryParams("Sobrenome");
-        int Idade = Integer.parseInt(request.queryParams("Idade"));
+        String dataNascimento = request.queryParams("Idade");
         String Senha = request.queryParams("Senha");
         String Email = request.queryParams("Email");
         String Sexo = request.queryParams("Sexo");
+
+        int Idade = calcularIdade(dataNascimento, "yyyy-MM-dd");
 
         int Id = usuarioDAO.getMaxCodigo() + 1;
 
@@ -36,6 +43,35 @@ public class UsuarioService {
         response.status(201);
 
         return Id;
+    }
+
+    //Tratar a data de nascimento e devolver a idade da pessoa
+    public int calcularIdade(String dataNasc, String pattern){
+        DateFormat sdf = new SimpleDateFormat(pattern);
+        Date dataNascInput = null;
+        
+        try {
+            dataNascInput= sdf.parse(dataNasc);
+        } catch (Exception e) {
+
+        }
+        
+        Calendar dateOfBirth = new GregorianCalendar();
+        dateOfBirth.setTime(dataNascInput);
+        
+        // Cria um objeto calendar com a data atual
+        Calendar today = Calendar.getInstance();
+        
+        // Obtém a idade baseado no ano
+        int age = today.get(Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR);
+        
+        dateOfBirth.add(Calendar.YEAR, age);
+        
+        if (today.before(dateOfBirth)) {
+            age--;
+        }
+        
+        return age;
     }
 
     public Object getUsuario(Request request, Response response) {

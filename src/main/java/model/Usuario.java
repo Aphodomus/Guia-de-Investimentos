@@ -3,106 +3,102 @@ package model;
 public class Usuario {
     //----------------------------Atributos--------------------------//
 
-    private int Id;
-    private String Nome;
-    private String Sobrenome;
-    private int Idade;
-    private String Senha;
-    private String Email;
-    private String Sexo;
+    private int id;
+    private String nome;
+    private String sobrenome;
+    private int idade;
+    private String senha;
+    private String email;
+    private String sexo;
 
     //----------------------------Metodos Especiais-------------------------//
 
     public Usuario() {
-        this.Id = -1;
-        this.Nome = "a";
-        this.Sobrenome = "b";
-        this.Idade = 0;
-        this.Senha = "-";
-        this.Email = "@";
-        this.Sexo = "_";
+        this.id = -1;
+        this.nome = "a";
+        this.sobrenome = "b";
+        this.idade = 0;
+        this.senha = "-";
+        this.email = "@";
+        this.sexo = "_";
     }
 
-    public Usuario(int Id, String Nome, String Sobrenome, int Idade, String Senha, String Email, String Sexo) {
-        setId(Id);
-        setEmail(Email);
-        setIdade(Idade);
-        setNome(Nome);
-        setSobreNome(Sobrenome);
-        setSenha(Senha);
-        setSexo(Sexo);
+    public Usuario(int id, String nome, String sobrenome, int idade, String senha, String email, String sexo) {
+        setId(id);
+        setEmail(email);
+        setIdade(idade);
+        setNome(nome);
+        setSobreNome(sobrenome);
+        setSenha(senha);
+        setSexo(sexo);
     }
 
     public int getId() {
-        return this.Id;
+        return this.id;
     }
 
     public void setId(int Id) {
-        this.Id = Id;
+        this.id = Id;
     }
 
     public String getNome() {
-        return this.Nome;
+        return this.nome;
     }
 
     public void setNome(String Nome) {
         if (Nome.length() > 2 && Nome.length() <= 1000) {
-            this.Nome = Nome;
+            this.nome = Nome;
         } else {
             System.out.println("Erro !!! Nome menor ou igual a 2 OU maior que 1000 caracteres");
         }
     }
 
     public String getSobreNome() {
-        return this.Sobrenome;
+        return this.sobrenome;
     }
 
     public void setSobreNome(String Sobrenome) {
         if (Sobrenome.length() > 2 && Sobrenome.length() <= 1000) {
-            this.Sobrenome = Sobrenome;
+            this.sobrenome = Sobrenome;
         } else {
             System.out.println("Erro !!! Sobrenome menor ou igual a 2 OU maior que 1000 caracteres");
         }
     }
 
     public int getIdade() {
-        return this.Idade;
+        return this.idade;
     }
 
     public void setIdade(int Idade) {
         if (Idade > 9 && Idade < 120) {
-            this.Idade = Idade;
+            this.idade = Idade;
         } else {
             System.out.println("Erro !!! Idade menor 10 OU maior que 120 ");
         }
     }
 
     public String getSenha() {
-        return this.Senha;
+        return this.senha;
     }
 
     public void setSenha(String Senha) {
-        this.Senha = Senha;
+        this.senha = Senha;
     }
 
     public String getEmail() {
-        return this.Email;
+        return this.email;
     }
 
     public void setEmail(String Email) {
-        this.Email = Email;
+        this.email = Email;
     }
 
     public String getSexo() {
-        return this.Sexo;
+        return this.sexo;
     }
 
     public void setSexo(String Sexo) {
-        if (Sexo == "Masculino" || Sexo == "Feminino") {
-            this.Sexo = Sexo;
-        } else {
-            System.out.println("Erro !!! Sexo diferente de Masculino OU Feminino ");
-        }
+        this.sexo = Sexo;
     }
 
     //----------------------------Funcoes e Metodos-------------------------//
@@ -110,7 +106,7 @@ public class Usuario {
     //Metodo sobreposto que e executado quando um objeto precisa ser mostrado na forma de String
     @Override
     public String toString() {
-        return "Usuario [Id = " + Id + ", Nome = " + Nome + ", Sobrenome = " + Sobrenome + ", Idade = " + Idade + ", Senha = " + Senha + ", Email = " + Email + ", Sexo = " + Sexo +"]";
+        return "Usuario [Id = " + id + ", Nome = " + nome + ", Sobrenome = " + sobrenome + ", Idade = " + idade + ", Senha = " + senha + ", Email = " + email + ", Sexo = " + sexo +"]";
     }
 
     //Metodo sobreposto para verificar se 2 objetos sao iguais
