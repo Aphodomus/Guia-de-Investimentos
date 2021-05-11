@@ -13,6 +13,7 @@ public class ToDoListService {
     public ToDoListService(){
         try{
             todolistDAO = new ToDoListDAO();
+            todolistDAO.conectar();
         }
         catch (Exception e){
             System.out.println(e.getMessage());
