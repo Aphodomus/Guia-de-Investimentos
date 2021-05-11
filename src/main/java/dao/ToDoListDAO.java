@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.*;
-
 import model.ToDoList;
 
 public class ToDoListDAO{
@@ -13,7 +12,7 @@ public class ToDoListDAO{
     }
     
     public int getMaxIdToDoList(){
-        return maxId;
+        return this.maxId;
     }
     
     public boolean conectar() {
