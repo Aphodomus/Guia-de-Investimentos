@@ -22,7 +22,7 @@ public class UsuarioDAO {
 		int porta = 5432; // Vou escolher na azure
 		String url = "jdbc:postgresql://" + serverName + ":" + porta +"/" + mydatabase; //+ "?gssEncMode=disable"; 
 		String username = "postgres";
-		String password = "truta74822";
+		String password = "senha";
 		boolean status = false;
 
 		try {
