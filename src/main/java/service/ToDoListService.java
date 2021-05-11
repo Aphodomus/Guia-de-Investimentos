@@ -1,6 +1,5 @@
 package service;
 
-
 import dao.ToDoListDAO;
 import model.ToDoList;
 
@@ -21,11 +20,11 @@ public class ToDoListService {
     }
 
     public Object addToDoList(Request request,Response response){
-        int Id = ToDoList.getMaxCodigo() + 1;
+        int Id = todolistDAO.getMaxIdToDoList() + 1;
         String Nome = request.queryParams("Nome");
         String Usuario = request.queryParams("Usuario");
 
-        ToDoList todolist = new Todolist(Id,Nome,Usuario);
+        ToDoList todolist = new ToDoList(Id, Nome, Usuario);
 
         todolistDAO.inserirToDoList(todolist);
 
@@ -35,9 +34,9 @@ public class ToDoListService {
     }
 
     public Object getToDoList(Request request, Response response){
-        int id = Integer.parseInt(request.params(":Id"));
+        int id = Integer.parseInt(request.params(":idtodolist"));
 
-        ToDoList todolist = (ToDoList) todolistDAO.procurarTodolist(Id);
+        ToDoList todolist = (ToDoList) todolistDAO.procurarTodolist(id);
 
         if(todolist!=null){
             response.header("Content-Type", "application/xml");
