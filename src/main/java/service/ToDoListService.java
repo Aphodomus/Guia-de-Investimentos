@@ -21,9 +21,9 @@ public class ToDoListService {
     }
 
     public Object addToDoList(Request request,Response response){
-        int Id = todolistDAO.getMaxIdToDoList() + 1;
+        int Id = 5;
         String Nome = request.queryParams("Nome");
-        String Usuario = request.queryParams("Usuario");
+        String Usuario = Nome;
 
         ToDoList todolist = new ToDoList(Id, Nome, Usuario);
 
@@ -37,9 +37,9 @@ public class ToDoListService {
     public Object getToDoList(Request request, Response response){
         int id = Integer.parseInt(request.params(":idtodolist"));
 
-        ToDoList todolist = (ToDoList) todolistDAO.procurarTodolist(id);
+        ToDoList todolist = (ToDoList) todolistDAO.procurarToDoList(id);
 
-        if(todolist!=null){
+        if(todolist != null){
             response.header("Content-Type", "application/xml");
             response.header("Content-Encoding", "UTF-8");
         
@@ -57,9 +57,9 @@ public class ToDoListService {
 }
 
     public Object updateToDoList(Request request, Response response){
-        int id = Integer.parseInt(request.params(":Id"));
+        int id = Integer.parseInt(request.params(":idtodolist"));
 
-        ToDoList todolist = (ToDoList) todolistDAO.procurarTodolist(id);
+        ToDoList todolist = (ToDoList) todolistDAO.procurarToDoList(id);
 
         if(todolist!=null){
             todolist.setId(Integer.parseInt(request.queryParams("Id")));
@@ -78,7 +78,7 @@ public class ToDoListService {
     public Object removerToDoList(Request request, Response response) {
         int id = Integer.parseInt(request.params(":idtodolist"));
 
-        ToDoList todolist = (ToDoList) todolistDAO.procurarTodolist(id);
+        ToDoList todolist = (ToDoList) todolistDAO.procurarToDoList(id);
 
         if (todolist != null) {
             todolistDAO.excluirToDoList(id);
@@ -91,28 +91,27 @@ public class ToDoListService {
         }
     }
     
-    public Object getAllToDoList(Request request, Response response){
-        StringBuffer returnValue = new StringBuffer("<todolist type=\"array\">");
+    public Object getAllToDoList(Request request, Response response) {
+        StringBuffer returnValue = new StringBuffer("<usuarios type=\"array\">");
 
-        if(todolistDAO.getToDoList()!=null){
-            for(ToDoList todolist : todolistDAO.getToDoList()){
-                returnValue.append("\n<todolist>\n" + 
-                                "\t<id>" + todolist.getId() + "</Id>\n" + 
-                                "\t<Nome>" + todolist.getNome() + "</Nome>\n" +
-                                "\t<Usuario>" + todolist.getUsuario() + "</Usuario>\n"+
-                                "<todolist>\n");
+        if (todolistDAO.getToDoList() != null) {
+            for (ToDoList todolist : todolistDAO.getToDoList()) {
+                returnValue.append("\n<todolist>\n" +
+                                        "\t<idtodolist>" + todolist.getId() + "</idtodolist>\n" +
+                                        "\t<nome>" + todolist.getNome() + "</nome>\n" +
+                                        "\t<usuario>" + todolist.getUsuario() + "</usuario>\n" +
+                                    "</todolist>\n");
             }
-
         } else {
             response.status(404); // 404 Erro
-            System.out.println("Lista de ToDoList vazia");
+            System.out.println("Lista de todolists vazia");
         }
-        returnValue.append("</todolist>");
+
+        returnValue.append("</usuarios>");
         response.header("Content-Type", "application/xml");
 	    response.header("Content-Encoding", "UTF-8");
 
         return returnValue.toString();
-    } 
-
+    }
 }
 

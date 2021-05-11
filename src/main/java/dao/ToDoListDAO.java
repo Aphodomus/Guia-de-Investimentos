@@ -18,7 +18,7 @@ public class ToDoListDAO{
     public boolean conectar() {
 		String driverName = "org.postgresql.Driver";                                 
 		String serverName = "localhost"; // Nome da azure que ela vai nos fornecer
-		String mydatabase = "teste03"; // Eu tenho que criar na azure
+		String mydatabase = "teste02"; // Eu tenho que criar na azure
 		int porta = 5432; // Vou escolher na azure
 		String url = "jdbc:postgresql://" + serverName + ":" + porta +"/" + mydatabase; //+ "?gssEncMode=disable"; 
 		String username = "postgres";
@@ -51,24 +51,29 @@ public class ToDoListDAO{
         return status;
     }
     
-    public boolean inserirToDoList(ToDoList todolist){
-    
-        boolean status =  false;
-        try {
-            Statement st = conexao.createStatement();
-            st.executeUpdate("INSERT INTO todolist(idtodolist, nome, usuario)"
-            +"VALUES("+todolist.getId()+", '"+todolist.getNome()+"', '" + todolist.getUsuario() + "');");
-            
-            st.close();
-            status = true;
-            
-            this.maxId = this.maxId + 1;
-        }   catch (SQLException u) {  
-            throw new RuntimeException(u);
-        }
-    
-        return status;
-    }
+    public boolean inserirToDoList(ToDoList todolist) {
+		boolean status = false;
+
+		try {  
+			Statement st = conexao.createStatement();
+			st.executeUpdate("INSERT INTO todolist (idtodolist, nome, usuario) "
+					       + "VALUES (" + todolist.getId() + ", '" + todolist.getNome() + "', '"  
+					       + todolist.getUsuario() + "');");
+			st.close();
+			status = true;
+
+            //Somar mais um ao maxID
+			this.maxId = maxId + 1;
+            todolist.setId(maxId + 1);
+
+			System.out.println("Insercao do usuario com id [" + todolist.getId() + "] efetuada com sucesso.");
+
+		} catch (SQLException u) {  
+			throw new RuntimeException(u);
+		}
+
+		return status;
+	}
     
     
     
@@ -91,24 +96,28 @@ public class ToDoListDAO{
         return status;
     }
     
-    public ToDoList procurarTodolist(int id) {
-        ToDoList todolist = null;
-        
-        try {
-            Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-            ResultSet rs = st.executeQuery("SELECT * FROM todolist WHERE todolist.idtodolist = " + id);
-    
-            if (rs.next()) {
-                todolist = new ToDoList(rs.getInt("Id"),rs.getString("Nome"),rs.getString("Usuario"));
-            }
-    
-            st.close();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-    
-        return todolist;
-    }
+    public ToDoList procurarToDoList(int idtodolist) {
+		ToDoList todolist = null;
+		System.out.println("id: " + idtodolist);
+		
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery("SELECT * FROM TODOLIST WHERE TODOLIST.idtodolist = " + idtodolist);
+		
+			
+			if (rs.next()) {
+				todolist = new ToDoList(rs.getInt("idtodolist"), rs.getString("nome"),  rs.getString("usuario"));
+			}
+
+            System.out.println("id: " + todolist.getId());
+
+	        st.close();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+
+		return todolist;
+	}
 
     public boolean excluirToDoList(int id) {
 		boolean status = false;
@@ -144,7 +153,7 @@ public class ToDoListDAO{
                 rs.beforeFirst();
 
                 for(int i = 0; rs.next(); i++) {
-                    todolist[i] = new ToDoList(rs.getInt("Id"), rs.getString("Nome"), rs.getString("Usuario"));
+                    todolist[i] = new ToDoList(rs.getInt("idtodolist"), rs.getString("nome"), rs.getString("usuario"));
                 }
 	        }
             st.close();
