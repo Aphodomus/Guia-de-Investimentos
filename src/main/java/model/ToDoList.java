@@ -5,14 +5,14 @@ import java.lang.String;
 
 public class ToDoList{
 
-    private int Id;
-    private String Nome;
-    private String Usuario;
+    private int id;
+    private String nome;
+    private String usuario;
 
     public ToDoList(){
-        this.Id = -1;
-        this.Nome = "";
-        this.Usuario ="";
+        this.id = -1;
+        this.nome = "";
+        this.usuario ="";
     }
 
     //----Metodos especiais-------//
@@ -26,32 +26,32 @@ public class ToDoList{
     //----Metodos get------//
 
     public int getId(){
-        return this.Id;
+        return this.id;
     }
 
     public String getNome(){
-        return this.Nome;
+        return this.nome;
     }
 
     public String getUsuario(){
-        return this.Usuario;
+        return this.usuario;
     }
 
     //----Metodos set------//
 
     public void setId(int Id){
-        this.Id = Id;
+        this.id = Id;
     }
 
     public void setNome(String Nome){
         if (Nome.length()>=3){
-            this.Nome = Nome;
+            this.nome = Nome;
         }
         else System.out.print("Erro na atribuicao do nome");
     }
 
     public void setUsuario(String Usuario){
-        this.Usuario = Usuario;
+        this.usuario = Usuario;
     }
 
 
