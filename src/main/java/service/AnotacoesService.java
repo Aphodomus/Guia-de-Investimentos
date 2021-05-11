@@ -24,11 +24,11 @@ public class AnotacoesService {
     }
 
     public Object addAnotacao(Request request, Response response) {
-        int todolist = Integer.parseInt(request.queryParams("todolist"));
+        int todolist = 2;//Integer.parseInt(request.queryParams("todolist"));
         Date datacriacao = new Date();
-        String descricao = request.queryParams("descricao");
+        String descricao = request.queryParams("Descricao");
 
-        int idanotacoes = anotacoesDAO.getMaxCodigo() + 1;
+        int idanotacoes = 3;
 
         Anotacoes anotacoes = new Anotacoes(todolist, idanotacoes, datacriacao, descricao);
 
@@ -95,7 +95,7 @@ public class AnotacoesService {
     }
 
     public Object removeAnotacao(Request request, Response response) {
-        int idanotacao = Integer.parseInt(request.params(":idanotacao"));
+        int idanotacao = Integer.parseInt(request.params(":idanotacoes"));
 
         Anotacoes anotacoes = (Anotacoes) anotacoesDAO.procurarAnotacao(idanotacao);
 

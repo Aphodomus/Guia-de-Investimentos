@@ -28,15 +28,11 @@ function addIdToPath(form_name, base_url){
 	<section class="section--container__responsive">
 		<section class="section--mainrow__responsive first--section">
 			<h1 class="generaltext">Cadastrar Livro</h1>
-			<form class="form--register" action="http://localhost:6789/livro" method="post" id="form-add">
-				<p>Nome:</p>          
-				<input class="input--register" type="text" name="nome" value="" placeholder="Harry Potter...">
-				<p>Páginas:</p>              
-				<input class="input--register" type="text" name="paginas" value="" placeholder="208...">
-				<p>Autor(a):</p>
-				<input class="input--register" type="text" name="autor" value="" placeholder="J. K. Rowling...">
-				<p>Gênero:</p>
-				<input class="input--register" type="text" name="genero" value="" placeholder="Fantasia..."> 
+			<form class="form--register" action="http://localhost:6789/anotacoes" method="post" id="form-add">
+				<div class="form-group">
+					<label for="email" class="text-info" >Descricao</label><br>
+					<input type="text" name="Descricao" id="txt_login" placeholder="Investir na ação..." class="form-control">
+				</div>
 	
 				<input type="submit" value="cadastrar" class="input--main__style input--button">
 			</form>
@@ -45,7 +41,7 @@ function addIdToPath(form_name, base_url){
 	<section class="section--container__responsive">
 		<section class="section--row__responsive">
 			<h1 class="generaltext">Detalhar livro</h1>
-			<form onsubmit="addIdToPath('form-get', 'http://localhost:6789/livro/')" method="get" id="form-get">
+			<form onsubmit="addIdToPath('form-get', 'http://localhost:6789/anotacoes/')" method="get" id="form-get">
 				<input class="input--down" type="text" id="codigo" value="" placeholder="codigo do livro..."> 
 				<input type="submit" value="consultar" class="input--button input--consult__style">
 			</form>
@@ -55,7 +51,7 @@ function addIdToPath(form_name, base_url){
 		
 		<section class="section--row__responsive">
 			<h1 class="generaltext">Remover livro</h1>
-			<form onsubmit="addIdToPath('form-delete', 'http://localhost:6789/livro/delete/')" method="get" id="form-delete">
+			<form onsubmit="addIdToPath('form-delete', 'http://localhost:6789/anotacoes/delete/')" method="get" id="form-delete">
 				<input class="input--down" type="text" id="codigo" value="" placeholder="codigo do livro...">
 				<input type="submit" value="remover" class="input--remove__style input--button">
 			</form>
@@ -65,7 +61,7 @@ function addIdToPath(form_name, base_url){
 
 		<section class="section--row__responsive">
 			<h1 class="generaltext">Listar livros</h1>
-			<form action="http://localhost:6789/livro"  method="get" id="form-all">
+			<form action="http://localhost:6789/anotacoes"  method="get" id="form-all">
 			    <br><br><br>
 				<input type="submit" value="todos" class="input--consult__style input--button">
 			</form>
@@ -205,7 +201,6 @@ form p {
 <footer>
 	<h3 style="text-align:center">&copy;Desenvolvido por Daniel Vitor</h3>
 </footer>
-
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -215,5 +210,6 @@ form p {
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+
 </body>
 </html>
