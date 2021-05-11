@@ -12,7 +12,7 @@ public class UsuarioDAO {
 	}
 
     public int getMaxCodigo() {
-		return maxId;
+		return this.maxId;
 	}
 
     public boolean conectar() {
@@ -64,7 +64,8 @@ public class UsuarioDAO {
 			status = true;
 
             //Somar mais um ao maxID
-            this.maxId = this.maxId + 1;
+			this.maxId = maxId + 1;
+            usuario.setId(maxId + 1);
 
 			System.out.println("Insercao do usuario com id [" + usuario.getId() + "] efetuada com sucesso.");
 

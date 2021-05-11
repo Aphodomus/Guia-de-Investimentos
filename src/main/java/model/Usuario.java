@@ -98,7 +98,11 @@ public class Usuario {
     }
 
     public void setSexo(String Sexo) {
-        this.sexo = Sexo;
+        if (sexo == "opcao1") {
+            this.sexo = "Masculino";
+        } else {
+            this.sexo = "Feminino";
+        }
     }
 
     //----------------------------Funcoes e Metodos-------------------------//
