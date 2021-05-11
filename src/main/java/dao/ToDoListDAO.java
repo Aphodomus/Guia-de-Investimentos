@@ -28,7 +28,7 @@ public class ToDoListDAO{
 		try {
 			Class.forName(driverName);
 			conexao = DriverManager.getConnection(url, username, password);
-			status = (conexao == null);
+            status = (conexao == null);
 			System.out.println("Conexão efetuada com o postgres!");
 		} catch (ClassNotFoundException e) { 
 			System.err.println("Conexão NÃO efetuada com o postgres -- Driver não encontrado -- " + e.getMessage());

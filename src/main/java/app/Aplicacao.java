@@ -5,7 +5,6 @@ import static spark.Spark.*;
 import service.ToDoListService;
 
 public class Aplicacao {
-	
     private static ToDoListService todolistService = new ToDoListService();
 
     public static void main(String[] args) {
