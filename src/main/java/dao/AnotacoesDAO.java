@@ -17,12 +17,12 @@ public class AnotacoesDAO {
 
     public boolean conectar() {
         String driverName = "org.postgresql.Driver";                                 
-		String serverName = "localhost"; // Nome da azure que ela vai nos fornecer
-		String mydatabase = "teste02"; // Eu tenho que criar na azure
+		String serverName = "projetosirius.postgres.database.azure.com"; // Nome da azure que ela vai nos fornecer
+		String mydatabase = "sirius"; // Eu tenho que criar na azure
 		int porta = 5432; // Vou escolher na azure
-		String url = "jdbc:postgresql://" + serverName + ":" + porta +"/" + mydatabase; //+ "?gssEncMode=disable"; 
-		String username = "postgres";
-		String password = "senha";
+		String url = "jdbc:postgresql://" + serverName + ":" + porta +"/" + mydatabase+ "?gssEncMode=disable"; 
+		String username = "projetoSirius@projetosirius";
+		String password = "siriusProjeto01";
 		boolean status = false;
 
         try {
