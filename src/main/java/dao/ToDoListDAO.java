@@ -16,13 +16,13 @@ public class ToDoListDAO{
     }
     
     public boolean conectar() {
-		String driverName = "org.postgresql.Driver";                                 
-		String serverName = "localhost"; // Nome da azure que ela vai nos fornecer
-		String mydatabase = "teste02"; // Eu tenho que criar na azure
-		int porta = 5432; // Vou escolher na azure
-		String url = "jdbc:postgresql://" + serverName + ":" + porta +"/" + mydatabase; //+ "?gssEncMode=disable"; 
-		String username = "postgres";
-		String password = "truta74822";
+		String driverName = "org.postgresql.Driver";                    
+		String serverName = "projetosirius.postgres.database.azure.com";
+		String mydatabase = "sirius";
+		int porta = 5432;
+		String url = "jdbc:postgresql://" + serverName + ":" + porta +"/" + mydatabase + "?gssEncMode=disable";;
+		String username = "projetoSirius@projetosirius";
+		String password = "siriusProjeto01";
 		boolean status = false;
 
 		try {
