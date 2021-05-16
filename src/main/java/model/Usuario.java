@@ -13,16 +13,6 @@ public class Usuario {
 
     //----------------------------Metodos Especiais-------------------------//
 
-    public Usuario() {
-        this.id = -1;
-        this.nome = "a";
-        this.sobrenome = "b";
-        this.idade = 0;
-        this.senha = "-";
-        this.email = "@";
-        this.sexo = "_";
-    }
-
     public Usuario(int id, String nome, String sobrenome, int idade, String senha, String email, String sexo) {
         setId(id);
         setEmail(email);
@@ -31,6 +21,16 @@ public class Usuario {
         setSobreNome(sobrenome);
         setSenha(senha);
         setSexo(sexo);
+    }
+
+    public Usuario() {
+        this.id = -1;
+        this.nome = "";
+        this.sobrenome = "";
+        this.idade = -1;
+        this.senha = "";
+        this.email = "";
+        this.sexo = "";
     }
 
     public int getId() {

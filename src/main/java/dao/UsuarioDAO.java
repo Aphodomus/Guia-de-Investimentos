@@ -68,10 +68,6 @@ public class UsuarioDAO {
 			st.close();
 			status = true;
 
-            //Somar mais um ao maxID
-			this.maxId = maxId + 1;
-            usuario.setId(maxId + 1);
-
 			System.out.println("Insercao do usuario com id [" + usuario.getId() + "] efetuada com sucesso.");
 
 		} catch (SQLException u) {  
@@ -106,7 +102,7 @@ public class UsuarioDAO {
 
 		try {  
 			Statement st = conexao.createStatement();
-			st.executeUpdate("DELETE FROM USUARIO WHERE Id = " + id);
+			st.executeUpdate("DELETE FROM USUARIO WHERE id = " + id);
 			st.close();
 			status = true;
 
@@ -152,7 +148,7 @@ public class UsuarioDAO {
 		
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			ResultSet rs = st.executeQuery("SELECT * FROM USUARIO WHERE USUARIO.Idade >= 60");		
+			ResultSet rs = st.executeQuery("SELECT * FROM USUARIO WHERE USUARIO.idade >= 60");		
 	         if(rs.next()){
 	             rs.last();
 	             usuarios = new Usuario[rs.getRow()];
@@ -160,7 +156,8 @@ public class UsuarioDAO {
 
 	             for(int i = 0; rs.next(); i++) {
 		                usuarios[i] = new Usuario(rs.getInt("Id"), rs.getString("Nome"), 
-                                                  rs.getString("Sobrenome"), rs.getInt("Idade"), rs.getString("Senha"), rs.getString("Email"), rs.getString("Sexo"));
+                                                  rs.getString("Sobrenome"), rs.getInt("Idade"), rs.getString("Senha"),
+												  rs.getString("Email"), rs.getString("Sexo"));
 	             }
 	          }
 	          st.close();

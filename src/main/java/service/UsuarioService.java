@@ -36,7 +36,6 @@ public class UsuarioService {
 
         int Id = (usuarioDAO.getMaxCodigo() + 1);
         usuarioDAO.setMaxCodigo(Id);
-        System.out.println("id = " + Id);
 
         Usuario usuario = new Usuario(Id, Nome, Sobrenome, Idade, Senha, Email, Sexo);
 
@@ -61,10 +60,8 @@ public class UsuarioService {
         Calendar dateOfBirth = new GregorianCalendar();
         dateOfBirth.setTime(dataNascInput);
         
-        // Cria um objeto calendar com a data atual
         Calendar today = Calendar.getInstance();
         
-        // Obtém a idade baseado no ano
         int age = today.get(Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR);
         
         dateOfBirth.add(Calendar.YEAR, age);
