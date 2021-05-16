@@ -17,9 +17,9 @@ public class AnotacoesDAO {
 
     public boolean conectar() {
         String driverName = "org.postgresql.Driver";                                 
-		String serverName = "projetosirius.postgres.database.azure.com"; // Nome da azure que ela vai nos fornecer
-		String mydatabase = "sirius"; // Eu tenho que criar na azure
-		int porta = 5432; // Vou escolher na azure
+		String serverName = "projetosirius.postgres.database.azure.com";
+		String mydatabase = "sirius";
+		int porta = 5432;
 		String url = "jdbc:postgresql://" + serverName + ":" + porta +"/" + mydatabase+ "?gssEncMode=disable"; 
 		String username = "projetoSirius@projetosirius";
 		String password = "siriusProjeto01";
@@ -29,7 +29,7 @@ public class AnotacoesDAO {
 			Class.forName(driverName);
 			conexao = DriverManager.getConnection(url, username, password);
 			status = (conexao == null);
-			System.out.println("Conexão efetuada com o postgres!");
+			System.out.println("Conexão efetuada");
 		} catch (ClassNotFoundException e) { 
 			System.err.println("Conexão NÃO efetuada com o postgres -- Driver não encontrado -- " + e.getMessage());
 		} catch (SQLException e) {
