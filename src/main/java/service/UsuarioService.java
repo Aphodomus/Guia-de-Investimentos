@@ -34,7 +34,8 @@ public class UsuarioService {
 
         int Idade = calcularIdade(dataNascimento, "yyyy-MM-dd");
 
-        int Id = (usuarioDAO.getMaxCodigo() + 4);
+        int Id = (usuarioDAO.getMaxCodigo() + 1);
+        usuarioDAO.setMaxCodigo(Id);
         System.out.println("id = " + Id);
 
         Usuario usuario = new Usuario(Id, Nome, Sobrenome, Idade, Senha, Email, Sexo);

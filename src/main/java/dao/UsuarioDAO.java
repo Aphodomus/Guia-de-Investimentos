@@ -15,6 +15,10 @@ public class UsuarioDAO {
 		return this.maxId;
 	}
 
+	public void setMaxCodigo(int maxId) {
+		this.maxId = maxId;
+	}
+
     public boolean conectar() {
 		String driverName = "org.postgresql.Driver";                                 
 		String serverName = "projetosirius.postgres.database.azure.com"; // Nome da azure que ela vai nos fornecer
