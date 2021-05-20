@@ -12,15 +12,11 @@ public class UsuarioDAO {
 	}
 
     public int getMaxCodigo() {
-		return this.maxId;
-	}
-
-	public void setMaxCodigo(int maxId) {
-		this.maxId = maxId;
+		return maxId;
 	}
 
     public boolean conectar() {
-		String driverName = "org.postgresql.Driver";                                 
+    	String driverName = "org.postgresql.Driver";                                 
 		String serverName = "projetosirius.postgres.database.azure.com"; // Nome da azure que ela vai nos fornecer
 		String mydatabase = "sirius"; // Eu tenho que criar na azure
 		int porta = 5432; // Vou escolher na azure
@@ -28,17 +24,17 @@ public class UsuarioDAO {
 		String username = "projetoSirius@projetosirius";
 		String password = "siriusProjeto01";
 		boolean status = false;
+		System.out.println("ola");
 
 		try {
 			Class.forName(driverName);
 			conexao = DriverManager.getConnection(url, username, password);
 			status = (conexao == null);
-			System.out.println("ConexÃ£o efetuada com o postgres!");
+			System.out.println("Conexão efetuada com o postgres!");
 		} catch (ClassNotFoundException e) { 
-			System.err.println("ConexÃ£o NÃƒO efetuada com o postgres -- Driver nÃ£o encontrado -- " + e.getMessage());
+			System.err.println("Conexão NÃO efetuada com o postgres -- Driver não encontrado -- " + e.getMessage());
 		} catch (SQLException e) {
-			System.err.println("ConexÃ£o NÃƒO efetuada com o postgres -- " + e.getMessage());
-			System.out.println(e);
+			System.err.println("Conexão NÃO efetuada com o postgres -- " + e.getMessage());
 		}
 
 		return status;
@@ -61,12 +57,15 @@ public class UsuarioDAO {
 
 		try {  
 			Statement st = conexao.createStatement();
-			st.executeUpdate("INSERT INTO usuario (id, sexo, senha, idade, email, nome, sobrenome) "
-					       + "VALUES (" + usuario.getId() + ", '" + usuario.getSexo() + "', '"  
-					       + usuario.getSenha() + "', '" + usuario.getIdade() + "', '" + usuario.getEmail()
-                           + "', '" + usuario.getNome()  + "', '" + usuario.getSobreNome() +"');");
+			st.executeUpdate("INSERT INTO USUARIO (Id, Nome, Sobrenome, Idade, Senha, Email, Sexo) "
+					       + "VALUES (" + usuario.getId() + ", '" + usuario.getSobreNome() + "', '"  
+					       + usuario.getNome() + "', '" + usuario.getIdade() + "', '" + usuario.getSenha() 
+                           + "', '" + usuario.getEmail() + "', '" + usuario.getSexo() +"');");
 			st.close();
 			status = true;
+
+            //Somar mais um ao maxID
+            this.maxId = this.maxId + 1;
 
 			System.out.println("Insercao do usuario com id [" + usuario.getId() + "] efetuada com sucesso.");
 
@@ -102,7 +101,7 @@ public class UsuarioDAO {
 
 		try {  
 			Statement st = conexao.createStatement();
-			st.executeUpdate("DELETE FROM USUARIO WHERE id = " + id);
+			st.executeUpdate("DELETE FROM USUARIO WHERE Id = " + id);
 			st.close();
 			status = true;
 
@@ -148,7 +147,7 @@ public class UsuarioDAO {
 		
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			ResultSet rs = st.executeQuery("SELECT * FROM USUARIO WHERE USUARIO.idade >= 60");		
+			ResultSet rs = st.executeQuery("SELECT * FROM USUARIO WHERE USUARIO.Idade >= 60");		
 	         if(rs.next()){
 	             rs.last();
 	             usuarios = new Usuario[rs.getRow()];
@@ -156,8 +155,7 @@ public class UsuarioDAO {
 
 	             for(int i = 0; rs.next(); i++) {
 		                usuarios[i] = new Usuario(rs.getInt("Id"), rs.getString("Nome"), 
-                                                  rs.getString("Sobrenome"), rs.getInt("Idade"), rs.getString("Senha"),
-												  rs.getString("Email"), rs.getString("Sexo"));
+                                                  rs.getString("Sobrenome"), rs.getInt("Idade"), rs.getString("Senha"), rs.getString("Email"), rs.getString("Sexo"));
 	             }
 	          }
 	          st.close();
