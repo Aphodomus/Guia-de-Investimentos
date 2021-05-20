@@ -24,17 +24,17 @@ public class UsuarioDAO {
 		String username = "projetoSirius@projetosirius";
 		String password = "siriusProjeto01";
 		boolean status = false;
-		System.out.println("ola");
+		System.out.println("ola ola ola");
 
 		try {
 			Class.forName(driverName);
 			conexao = DriverManager.getConnection(url, username, password);
 			status = (conexao == null);
-			System.out.println("Conexão efetuada com o postgres!");
+			System.out.println("Conexï¿½o efetuada com o postgres!");
 		} catch (ClassNotFoundException e) { 
-			System.err.println("Conexão NÃO efetuada com o postgres -- Driver não encontrado -- " + e.getMessage());
+			System.err.println("Conexï¿½o Nï¿½O efetuada com o postgres -- Driver nï¿½o encontrado -- " + e.getMessage());
 		} catch (SQLException e) {
-			System.err.println("Conexão NÃO efetuada com o postgres -- " + e.getMessage());
+			System.err.println("Conexï¿½o Nï¿½O efetuada com o postgres -- " + e.getMessage());
 		}
 
 		return status;
