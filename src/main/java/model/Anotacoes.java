@@ -1,10 +1,6 @@
 package model;
 
 import java.util.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 public class Anotacoes {
     //----------------------------Atributos--------------------------//
@@ -22,9 +18,7 @@ public class Anotacoes {
         this.descricao = "bruh";
     }
 
-    public Anotacoes(int todolist, int idanotacoes, Date datacriacao, String descricao) {
-        setToDoList(todolist);
-        setIdAnotacoes(idanotacoes);
+    public Anotacoes(Date datacriacao, String descricao) {
         setDataCriacao(datacriacao);
         setDescricao(descricao);
     }

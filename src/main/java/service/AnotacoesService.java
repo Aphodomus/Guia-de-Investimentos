@@ -6,7 +6,6 @@ import model.Anotacoes;
 import spark.Request;
 import spark.Response;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -24,19 +23,16 @@ public class AnotacoesService {
     }
 
     public Object addAnotacao(Request request, Response response) {
-        int todolist = 2;//Integer.parseInt(request.queryParams("todolist"));
         Date datacriacao = new Date();
         String descricao = request.queryParams("Descricao");
 
-        int idanotacoes = 3;
-
-        Anotacoes anotacoes = new Anotacoes(todolist, idanotacoes, datacriacao, descricao);
+        Anotacoes anotacoes = new Anotacoes(datacriacao, descricao);
 
         anotacoesDAO.inserirAnotacao(anotacoes);
 
         response.status(201);
 
-        return idanotacoes;
+        return "Sucesso";
     }
 
     public Object getAnotacao(Request request, Response response) {

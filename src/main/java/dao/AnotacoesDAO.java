@@ -56,9 +56,8 @@ public class AnotacoesDAO {
 
 		try {  
 			Statement st = conexao.createStatement();
-			st.executeUpdate("INSERT INTO anotacoes (todolist, idanotacoes, datacriacao, descricao) "
-					       + "VALUES (" + anotacoes.getToDoList() + ", '" + anotacoes.getIdAnotacoes() + "', '"  
-					       + anotacoes.getDataCriacao() + "', '" + anotacoes.getDescricao() + "');");
+			st.executeUpdate("INSERT INTO anotacoes (datacriacao, descricao) "
+					       + "VALUES ('" + anotacoes.getDataCriacao() + "', '" + anotacoes.getDescricao() + "');");
 			st.close();
 			status = true;
 
@@ -126,8 +125,7 @@ public class AnotacoesDAO {
 	             rs.beforeFirst();
 
 	             for(int i = 0; rs.next(); i++) {
-	                anotacoes[i] = new Anotacoes(rs.getInt("todolist"), rs.getInt("idanotacoes"), 
-	                		                  rs.getDate("datacriacao"), rs.getString("descricao"));
+	                anotacoes[i] = new Anotacoes(rs.getDate("datacriacao"), rs.getString("descricao"));
 	             }
 	          }
 	          st.close();
@@ -146,8 +144,7 @@ public class AnotacoesDAO {
 			ResultSet rs = st.executeQuery("SELECT * FROM anotacoes WHERE anotacoes.idanotacoes = " + id);
 
 			if (rs.next()) {
-				anotacoes = new Anotacoes(rs.getInt("todolist"), rs.getInt("idanotacoes"), 
-                                          rs.getDate("datacriacao"), rs.getString("descricao"));
+				anotacoes = new Anotacoes(rs.getDate("datacriacao"), rs.getString("descricao"));
 			}
 
 	        st.close();

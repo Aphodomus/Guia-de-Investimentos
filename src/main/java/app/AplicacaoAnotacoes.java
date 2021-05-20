@@ -4,7 +4,7 @@ import static spark.Spark.*;
 
 import service.AnotacoesService;
 
-public class Aplicacao {
+public class AplicacaoAnotacoes {
     private static AnotacoesService anotacoesService = new AnotacoesService();
 
     public static void main(String[] args) {
