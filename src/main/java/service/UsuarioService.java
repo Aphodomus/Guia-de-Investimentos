@@ -31,17 +31,17 @@ public class UsuarioService {
         String Email = request.queryParams("Email");
         String Sexo = request.queryParams("Sexo");
 
+        System.out.println("Sexo : " + Sexo);
+
         int Idade = calcularIdade(dataNascimento, "yyyy-MM-dd");
 
-        int Id = usuarioDAO.getMaxCodigo() + 1;
-
-        Usuario usuario = new Usuario(Id, Nome, Sobrenome, Idade, Senha, Email, Sexo);
+        Usuario usuario = new Usuario(Nome, Sobrenome, Idade, Senha, Email, Sexo);
 
         usuarioDAO.inserirUsuario(usuario);
 
         response.status(201);
 
-        return Id;
+        return "Sucesso";
     }
 
     //Tratar a data de nascimento e devolver a idade da pessoa
@@ -61,7 +61,7 @@ public class UsuarioService {
         // Cria um objeto calendar com a data atual
         Calendar today = Calendar.getInstance();
         
-        // Obtém a idade baseado no ano
+        // Obtï¿½m a idade baseado no ano
         int age = today.get(Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR);
         
         dateOfBirth.add(Calendar.YEAR, age);

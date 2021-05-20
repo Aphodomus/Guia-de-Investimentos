@@ -5,14 +5,9 @@ import model.Usuario;
 
 public class UsuarioDAO {
     private Connection conexao;
-    private int maxId;
 
     public UsuarioDAO() {
 		conexao = null;
-	}
-
-    public int getMaxCodigo() {
-		return maxId;
 	}
 
     public boolean conectar() {
@@ -56,15 +51,12 @@ public class UsuarioDAO {
 
 		try {  
 			Statement st = conexao.createStatement();
-			st.executeUpdate("INSERT INTO USUARIO (Id, Nome, Sobrenome, Idade, Senha, Email, Sexo) "
-					       + "VALUES (" + usuario.getId() + ", '" + usuario.getSobreNome() + "', '"  
-					       + usuario.getNome() + "', '" + usuario.getIdade() + "', '" + usuario.getSenha() 
+			st.executeUpdate("INSERT INTO USUARIO (Nome, Sobrenome, Idade, Senha, Email, Sexo) "
+					       + "VALUES ('" + usuario.getNome() + "', '"  
+					       + usuario.getSobreNome() + "', '" + usuario.getIdade() + "', '" + usuario.getSenha() 
                            + "', '" + usuario.getEmail() + "', '" + usuario.getSexo() +"');");
 			st.close();
 			status = true;
-
-            //Somar mais um ao maxID
-            this.maxId = this.maxId + 1;
 
 			System.out.println("Insercao do usuario com id [" + usuario.getId() + "] efetuada com sucesso.");
 
@@ -100,14 +92,9 @@ public class UsuarioDAO {
 
 		try {  
 			Statement st = conexao.createStatement();
-			st.executeUpdate("DELETE FROM USUARIO WHERE Id = " + id);
+			st.executeUpdate("DELETE FROM USUARIO WHERE id_usuario = " + id);
 			st.close();
 			status = true;
-
-            //subtrair um ao maxID
-            if (this.maxId > 0) {
-                this.maxId = this.maxId - 1;
-            }
 
 			System.out.println("Remocao do Usuario com id [" + id + "] efetuada com sucesso.");
 		} catch (SQLException u) {  
@@ -129,7 +116,7 @@ public class UsuarioDAO {
 	             rs.beforeFirst();
 
 	             for(int i = 0; rs.next(); i++) {
-	                usuarios[i] = new Usuario(rs.getInt("Id"), rs.getString("Nome"), 
+	                usuarios[i] = new Usuario(rs.getString("Nome"), 
 	                		                  rs.getString("Sobrenome"), rs.getInt("Idade"), rs.getString("Senha"), rs.getString("Email"), rs.getString("Sexo"));
 	             }
 	          }
@@ -153,7 +140,7 @@ public class UsuarioDAO {
 	             rs.beforeFirst();
 
 	             for(int i = 0; rs.next(); i++) {
-		                usuarios[i] = new Usuario(rs.getInt("Id"), rs.getString("Nome"), 
+		                usuarios[i] = new Usuario(rs.getString("Nome"), 
                                                   rs.getString("Sobrenome"), rs.getInt("Idade"), rs.getString("Senha"), rs.getString("Email"), rs.getString("Sexo"));
 	             }
 	          }
@@ -170,10 +157,10 @@ public class UsuarioDAO {
 		
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			ResultSet rs = st.executeQuery("SELECT * FROM USUARIO WHERE USUARIO.Id = " + id);
+			ResultSet rs = st.executeQuery("SELECT * FROM USUARIO WHERE USUARIO.id_usuario = " + id);
 
 			if (rs.next()) {
-				usuarios = new Usuario(rs.getInt("Id"), rs.getString("Nome"), 
+				usuarios = new Usuario(rs.getString("Nome"), 
                                        rs.getString("Sobrenome"), rs.getInt("Idade"), rs.getString("Senha"), rs.getString("Email"), rs.getString("Sexo"));
 			}
 

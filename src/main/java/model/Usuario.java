@@ -23,8 +23,7 @@ public class Usuario {
         this.Sexo = "_";
     }
 
-    public Usuario(int Id, String Nome, String Sobrenome, int Idade, String Senha, String Email, String Sexo) {
-        setId(Id);
+    public Usuario(String Nome, String Sobrenome, int Idade, String Senha, String Email, String Sexo) {
         setEmail(Email);
         setIdade(Idade);
         setNome(Nome);
@@ -98,10 +97,12 @@ public class Usuario {
     }
 
     public void setSexo(String Sexo) {
-        if (Sexo == "Masculino" || Sexo == "Feminino") {
-            this.Sexo = Sexo;
+        if (Sexo.equals("opcao2")) {
+            this.Sexo = "Feminino";
+        } else if (Sexo.equals("opcao1")) {
+            this.Sexo = "Masculino";
         } else {
-            System.out.println("Erro !!! Sexo diferente de Masculino OU Feminino ");
+            
         }
     }
 
