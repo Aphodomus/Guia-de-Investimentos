@@ -23,6 +23,7 @@ public class AnotacoesService {
     }
 
     public Object addAnotacao(Request request, Response response) {
+        String redirect = "<script>window.location.href = \"http://127.0.0.1:5500/novoguiadeinvestimentos/src/main/resources/formulario.html\"</script>";
         Date datacriacao = new Date();
         String descricao = request.queryParams("Descricao");
 
@@ -32,7 +33,7 @@ public class AnotacoesService {
 
         response.status(201);
 
-        return "Sucesso";
+        return redirect;
     }
 
     public Object getAnotacao(Request request, Response response) {
