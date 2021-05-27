@@ -17,10 +17,8 @@ public class ToDoList{
 
     //----Metodos especiais-------//
 
-   public ToDoList(int Id, String Nome, String Usuario){
-        setId(Id);
+   public ToDoList(String Nome){
         setNome(Nome);
-        setUsuario(Usuario);
    }
 
     //----Metodos get------//

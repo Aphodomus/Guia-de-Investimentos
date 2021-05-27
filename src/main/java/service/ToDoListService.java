@@ -21,17 +21,15 @@ public class ToDoListService {
     }
 
     public Object addToDoList(Request request,Response response){
-        int Id = 5;
         String Nome = request.queryParams("Nome");
-        String Usuario = Nome;
 
-        ToDoList todolist = new ToDoList(Id, Nome, Usuario);
+        ToDoList todolist = new ToDoList(Nome);
 
         todolistDAO.inserirToDoList(todolist);
 
         response.status(201);
 
-        return Id;
+        return "Sucesso";
     }
 
     public Object getToDoList(Request request, Response response){

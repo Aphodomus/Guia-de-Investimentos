@@ -56,15 +56,11 @@ public class ToDoListDAO{
 
 		try {  
 			Statement st = conexao.createStatement();
-			st.executeUpdate("INSERT INTO todolist (idtodolist, nome, usuario) "
-					       + "VALUES (" + todolist.getId() + ", '" + todolist.getNome() + "', '"  
+			st.executeUpdate("INSERT INTO todolist (nome, usuario) "
+					       + "VALUES ('" + todolist.getNome() + "', '"  
 					       + todolist.getUsuario() + "');");
 			st.close();
 			status = true;
-
-            //Somar mais um ao maxID
-			this.maxId = maxId + 1;
-            todolist.setId(maxId + 1);
 
 			System.out.println("Insercao do usuario com id [" + todolist.getId() + "] efetuada com sucesso.");
 
@@ -106,7 +102,7 @@ public class ToDoListDAO{
 		
 			
 			if (rs.next()) {
-				todolist = new ToDoList(rs.getInt("idtodolist"), rs.getString("nome"),  rs.getString("usuario"));
+				todolist = new ToDoList(rs.getString("nome"));
 			}
 
             System.out.println("id: " + todolist.getId());
@@ -128,11 +124,6 @@ public class ToDoListDAO{
 			st.close();
 			status = true;
 
-            //subtrair um ao maxID
-            if (this.maxId > 0) {
-                this.maxId = this.maxId - 1;
-            }
-
 			System.out.println("Remocao da todolist com idtodolist [" + id + "] efetuada com sucesso.");
 		} catch (SQLException u) {  
 			throw new RuntimeException(u);
@@ -153,7 +144,7 @@ public class ToDoListDAO{
                 rs.beforeFirst();
 
                 for(int i = 0; rs.next(); i++) {
-                    todolist[i] = new ToDoList(rs.getInt("idtodolist"), rs.getString("nome"), rs.getString("usuario"));
+                    todolist[i] = new ToDoList(rs.getString("nome"));
                 }
 	        }
             st.close();
