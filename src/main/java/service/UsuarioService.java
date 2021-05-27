@@ -24,6 +24,8 @@ public class UsuarioService {
     }
 
     public Object addUsuario(Request request, Response response) {
+        String redirect = "<script>window.location.href = \"http://127.0.0.1:5500/novoguiadeinvestimentos/src/main/resources/formulario.html\"</script>";
+
         String Nome = request.queryParams("Nome");
         String Sobrenome = request.queryParams("Sobrenome");
         String dataNascimento = request.queryParams("Idade");
@@ -41,7 +43,7 @@ public class UsuarioService {
 
         response.status(201);
 
-        return "Sucesso";
+        return redirect;
     }
 
     //Tratar a data de nascimento e devolver a idade da pessoa
@@ -122,6 +124,7 @@ public class UsuarioService {
 
     public Object removeUsuario(Request request, Response response) {
         int id = Integer.parseInt(request.params(":Id"));
+        String redirect = "<script>window.location.href = \"http://127.0.0.1:5500/novoguiadeinvestimentos/src/main/resources/formulario.html\"</script>";
 
         Usuario usuario = (Usuario) usuarioDAO.procurarUsuario(id);
 
@@ -129,7 +132,8 @@ public class UsuarioService {
             usuarioDAO.excluirUsuario(id);
 
             response.status(200); // Sucesso
-            return id;
+
+            return redirect;
         } else {
             response.status(404); // 404 Erro
             return "Usuario com id [" + id +"] nao econtrado";
