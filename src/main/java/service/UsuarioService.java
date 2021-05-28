@@ -33,8 +33,6 @@ public class UsuarioService {
         String Email = request.queryParams("Email");
         String Sexo = request.queryParams("Sexo");
 
-        System.out.println("Sexo : " + Sexo);
-
         int Idade = calcularIdade(dataNascimento, "yyyy-MM-dd");
 
         Usuario usuario = new Usuario(Nome, Sobrenome, Idade, Senha, Email, Sexo);
