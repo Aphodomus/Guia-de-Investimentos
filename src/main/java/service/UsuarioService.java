@@ -46,6 +46,23 @@ public class UsuarioService {
         return redirect;
     }
 
+    public Object logarUsuario(Request request, Response response) {
+        String redirect = "<script>window.location.href = \"http://127.0.0.1:5500/novoguiadeinvestimentos/src/main/resources/formulario.html\"</script>";
+
+        String nome = request.queryParams("username");
+        String senha = request.queryParams("password");
+
+        boolean resp = usuarioDAO.procurarLogin(nome, senha);
+
+        Usuario usuario = new Usuario(Nome, Sobrenome, Idade, Senha, Email, Sexo);
+
+        usuarioDAO.inserirUsuario(usuario);
+
+        response.status(201);
+
+        return redirect;
+    }
+
     //Tratar a data de nascimento e devolver a idade da pessoa
     public int calcularIdade(String dataNasc, String pattern){
         DateFormat sdf = new SimpleDateFormat(pattern);

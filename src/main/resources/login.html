@@ -17,7 +17,7 @@
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" method="post" onsubmit="loginUser (this)">
+                        <form id="login-form" class="form" method="post" action="http://localhost:6789/logar" id="form-add">
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group">
                                 <label for="username" class="text-info">E-mail</label><br>
@@ -60,11 +60,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="login" class="text-info">Senha</label><br>
-                                <input type="text" name="Senha" id="txt_login" placeholder="francisco123" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="senha2" class="text-info">Confirmação de Senha</label><br>
-                                <input type="password" name="ConfirmSenha" id="txt_senha2" placeholder="francisco123" class="form-control">
+                                <input type="password" name="Senha" id="txt_login" placeholder="francisco123" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="primeironome" class="text-info">Primeiro nome</label><br>
@@ -95,12 +91,7 @@
                                 </div>
                             </div>
 
-                            <input type="submit" value="cadastrar" class="input--main__style input--button">
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                <button type="submit" value="salvar" id="btn_salvar" class="btn btn-danger btn-md">Salvar</button>
-                            </div>
+                            <input type="submit" value="cadastrar" class="input--main__style input--button" id="botaocadastrar">
 
                         </form>
                     </div>

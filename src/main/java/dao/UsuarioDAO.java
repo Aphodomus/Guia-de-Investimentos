@@ -171,4 +171,24 @@ public class UsuarioDAO {
 
 		return usuarios;
 	}
+
+	public boolean procurarLogin(String nome, String senha) {
+		Usuario usuarios = null;
+		
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery("SELECT * FROM USUARIO WHERE USUARIO.nome = '" + id + "' AND USUARIO.senha = '" + senha + "'");
+
+			if (rs.next()) {
+				usuarios = new Usuario(rs.getString("Nome"), 
+                                       rs.getString("Sobrenome"), rs.getInt("Idade"), rs.getString("Senha"), rs.getString("Email"), rs.getString("Sexo"));
+			}
+
+	        st.close();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+
+		return usuarios;
+	}
 }
