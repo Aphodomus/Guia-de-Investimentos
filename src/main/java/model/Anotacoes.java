@@ -23,6 +23,12 @@ public class Anotacoes {
         setDescricao(descricao);
     }
 
+    public Anotacoes(int todolist, Date datacriacao, String descricao) {
+        setToDoList(todolist);
+        setDataCriacao(datacriacao);
+        setDescricao(descricao);
+    }
+
     public int getToDoList() {
         return this.todolist;
     }

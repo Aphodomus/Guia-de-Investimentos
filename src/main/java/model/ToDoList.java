@@ -7,12 +7,12 @@ public class ToDoList{
 
     private int idtodolist;
     private String nome;
-    private String usuario;
+    private int usuario;
 
     public ToDoList(){
         this.idtodolist = -1;
         this.nome = "";
-        this.usuario ="";
+        this.usuario = -1;
     }
 
     //----Metodos especiais-------//
@@ -20,6 +20,11 @@ public class ToDoList{
    public ToDoList(String Nome){
         setNome(Nome);
    }
+
+   public ToDoList(String Nome, int usuario){
+    setNome(Nome);
+    setUsuario(usuario);
+}
 
     //----Metodos get------//
 
@@ -31,7 +36,7 @@ public class ToDoList{
         return this.nome;
     }
 
-    public String getUsuario(){
+    public int getUsuario(){
         return this.usuario;
     }
 
@@ -48,7 +53,7 @@ public class ToDoList{
         else System.out.print("Erro na atribuicao do nome");
     }
 
-    public void setUsuario(String Usuario){
+    public void setUsuario(int Usuario){
         this.usuario = Usuario;
     }
 

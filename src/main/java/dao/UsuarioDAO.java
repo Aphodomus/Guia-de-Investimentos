@@ -24,7 +24,7 @@ public class UsuarioDAO {
 			Class.forName(driverName);
 			conexao = DriverManager.getConnection(url, username, password);
 			status = (conexao == null);
-			System.out.println("Conexao efetuada com o postgres!");
+			System.out.println("Conexao usuario efetuada");
 		} catch (ClassNotFoundException e) { 
 			System.err.println("Conexao NaO efetuada com o postgres -- Driver nao encontrado -- " + e.getMessage());
 		} catch (SQLException e) {
@@ -170,5 +170,69 @@ public class UsuarioDAO {
 		}
 
 		return usuarios;
+	}
+
+	public boolean pesquisarEmail(String email) {
+		boolean resp = false;
+
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery("SELECT USUARIO.email FROM USUARIO WHERE USUARIO.email = '" + email + "'");		
+	         
+			if (rs.next()) {
+				String frase = rs.getString("email");
+				if (frase.equals(email)) {
+					resp = true;
+				}
+			}
+
+	        st.close();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+
+		return resp;
+	}
+
+	public boolean pesquisarSenha(String senha) {
+		boolean resp = false;
+
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery("SELECT USUARIO.senha FROM USUARIO WHERE USUARIO.senha = '" + senha + "'");		
+	         
+			if (rs.next()) {
+				String frase = rs.getString("senha");
+				if (frase.equals(senha)) {
+					resp = true;
+				}
+			}
+
+	        st.close();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+
+		return resp;
+	}
+
+	public int idUsuario(Usuario usuario) {
+		int resp = -1;
+
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery("SELECT USUARIO.id_usuario FROM USUARIO WHERE USUARIO.email = '" + usuario.getEmail() + "' AND USUARIO.senha = '" + usuario.getSenha() + "'");		
+	         
+			if (rs.next()) {
+				int id = rs.getInt("id_usuario");
+				resp = id;
+			}
+
+	        st.close();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+
+		return resp;
 	}
 }

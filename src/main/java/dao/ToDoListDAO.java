@@ -29,7 +29,7 @@ public class ToDoListDAO{
 			Class.forName(driverName);
 			conexao = DriverManager.getConnection(url, username, password);
             status = (conexao == null);
-			System.out.println("Conexão efetuada com o postgres!");
+			System.out.println("Conexão todolist efetuada");
 		} catch (ClassNotFoundException e) { 
 			System.err.println("Conexão NÃO efetuada com o postgres -- Driver não encontrado -- " + e.getMessage());
 		} catch (SQLException e) {
@@ -155,5 +155,24 @@ public class ToDoListDAO{
         return todolist;
     }
 
+	public int idToDoList(ToDoList todolist) {
+		int resp = -1;
+
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery("SELECT TODOLIST.idtodolist FROM TODOLIST WHERE TODOLIST.usuario = '" + todolist.getUsuario() + "'");		
+	         
+			if (rs.next()) {
+				int id = rs.getInt("idtodolist");
+				resp = id;
+			}
+
+	        st.close();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+
+		return resp;
+	}
 }
 
