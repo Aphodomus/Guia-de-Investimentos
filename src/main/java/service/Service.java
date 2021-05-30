@@ -51,15 +51,16 @@ public class Service {
         String Senha = request.queryParams("Senha");
         String Email = request.queryParams("Email");
         String Sexo = request.queryParams("Sexo");
-
         int Idade = calcularIdade(dataNascimento, "yyyy-MM-dd");
 
+        //Criar usuario
         Usuario usuario = new Usuario(Nome, Sobrenome, Idade, Senha, Email, Sexo);
 
         usuarioDAO.inserirUsuario(usuario);
 
         int idUsuario = usuarioDAO.procurarEmailSenha(Email, Senha);
 
+        //Criar todolist
         ToDoList todolist = new ToDoList("Diary", idUsuario);
 
         todolistDAO.inserirToDoList(todolist);
@@ -68,6 +69,7 @@ public class Service {
 
         Date date = new Date();
 
+        //Criar anotacao
         Anotacoes anotacao = new Anotacoes(id, date, "Sua primeira anotação");
 
         anotacoesDAO.inserirAnotacao(anotacao);
