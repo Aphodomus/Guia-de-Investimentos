@@ -62,7 +62,7 @@ public class ToDoListDAO{
 			st.close();
 			status = true;
 
-			System.out.println("Insercao da todolist com id [" + todolist.getId() + "] efetuada com sucesso.");
+			System.out.println("Insercao da todolist com id [" + todolist.getIdToDoList() + "] efetuada com sucesso.");
 
 		} catch (SQLException u) {  
 			throw new RuntimeException(u);
@@ -79,7 +79,7 @@ public class ToDoListDAO{
         try {  
             Statement st = conexao.createStatement();
             String sql = "UPDATE todolist SET nome = '" + todolist.getNome() + "', usuario = '"  
-             + todolist.getUsuario() + "'" + "WHERE idtodolist = " + todolist.getId();
+             + todolist.getUsuario() + "'" + "WHERE idtodolist = " + todolist.getIdToDoList();
             st.executeUpdate(sql);
             st.close();
             status = true;
@@ -94,7 +94,6 @@ public class ToDoListDAO{
     
     public ToDoList procurarToDoList(int idtodolist) {
 		ToDoList todolist = null;
-		System.out.println("id: " + idtodolist);
 		
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
@@ -105,7 +104,7 @@ public class ToDoListDAO{
 				todolist = new ToDoList(rs.getString("nome"));
 			}
 
-            System.out.println("id: " + todolist.getId());
+            System.out.println("id: " + todolist.getIdToDoList());
 
 	        st.close();
 		} catch (Exception e) {
@@ -172,6 +171,26 @@ public class ToDoListDAO{
 			System.err.println(e.getMessage());
 		}
 
+		return resp;
+	}
+
+	public int pesquisarToDoListID(int id) {
+		int resp = 0;
+
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery("SELECT TODOLIST.idtodolist FROM TODOLIST WHERE TODOLIST.usuario = " + id);		
+	         
+			if (rs.next()) {
+				int frase = rs.getInt("idtodolist");
+				resp = frase;
+			}
+
+	        st.close();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		
 		return resp;
 	}
 }

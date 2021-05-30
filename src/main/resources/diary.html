@@ -57,11 +57,15 @@
             <div class="row padding text-center">
                 <div class="col-12 agenda-content">
                     <h1><span class="title">Diary</span>List</h1>
-                    <div class="inputDiv">
-                        <input type="text" class="input" placeholder="Anote algo...">
-                        <button class="add"><i class="fas fa-plus"></i></button>
-                    </div>
-                    <div class="container"></div>
+                    <form class="form--register" action="http://localhost:6789/anotacoes" method="post" id="form-add">
+                        <div class="inputDiv">
+                            <label for="email" class="text-info" ></label><br>    
+                            <input type="text" name="Descricao" class="input" placeholder="Anote algo..." id="txt_login" class="form-control">
+                            <button type="submit" class="add"><i class="fas fa-plus"></i></button>
+                        
+                        </div>
+                        <div class="container"></div>
+                    </form>
                 </div>
             </div>
         </div>

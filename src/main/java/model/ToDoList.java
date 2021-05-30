@@ -28,7 +28,7 @@ public class ToDoList{
 
     //----Metodos get------//
 
-    public int getId(){
+    public int getIdToDoList(){
         return this.idtodolist;
     }
 
@@ -68,6 +68,6 @@ public class ToDoList{
     //Metodo sobreposto para verificar se 2 objetos sao iguais
     @Override
 	public boolean equals(Object obj) {
-		return (this.getId() == ((ToDoList) obj).getId());
+		return (this.getIdToDoList() == ((ToDoList) obj).getIdToDoList());
 	}
 }

@@ -20,6 +20,7 @@ public class Service {
     private ToDoListDAO todolistDAO;
     private AnotacoesDAO anotacoesDAO;
     private int usuarioID = 0;
+    private int todolistID = 0;
 
     public Service() {
         try {
@@ -57,17 +58,17 @@ public class Service {
 
         usuarioDAO.inserirUsuario(usuario);
 
-        int idUsuario = usuarioDAO.idUsuario(usuario);
+        int idUsuario = usuarioDAO.procurarEmailSenha(Email, Senha);
 
         ToDoList todolist = new ToDoList("Diary", idUsuario);
 
         todolistDAO.inserirToDoList(todolist);
 
-        int idToDoList = todolistDAO.idToDoList(todolist);
+        int id = todolistDAO.idToDoList(todolist);
 
         Date date = new Date();
 
-        Anotacoes anotacao = new Anotacoes(idToDoList, date, "Sua primeira anotação");
+        Anotacoes anotacao = new Anotacoes(id, date, "Sua primeira anotação");
 
         anotacoesDAO.inserirAnotacao(anotacao);
 
@@ -91,6 +92,8 @@ public class Service {
 
             usuarioID = usuarioDAO.procurarEmailSenha(Email, Senha);
 
+            todolistID = todolistDAO.pesquisarToDoListID(usuarioID);
+
             return redirect;
         }
 
@@ -105,8 +108,6 @@ public class Service {
 
         if (usuarioID >= 0) {
             response.status(201);
-
-            System.out.println(usuarioID);
 
             return redirect;
         }
@@ -261,7 +262,7 @@ public class Service {
         
 
         return "<ToDoList>\n" +
-                    "\t<Id>"+ todolist.getId() +"</Id>\n" + 
+                    "\t<Id>"+ todolist.getIdToDoList() +"</Id>\n" + 
                     "\t<Nome>" + todolist.getNome() + "</Nome>\n" +
                     "\t<Usuario>" + todolist.getUsuario() + "</Nome>\n" +
                 "</ToDoList>\n";
@@ -280,7 +281,6 @@ public class Service {
         if(todolist!=null){
             todolist.setId(Integer.parseInt(request.queryParams("Id")));
             todolist.setNome(request.queryParams("Nome"));
-            todolist.setUsuario(request.queryParams("Usuario"));
 
             todolistDAO.atualizarToDoList(todolist);
 
@@ -313,7 +313,7 @@ public class Service {
         if (todolistDAO.getToDoList() != null) {
             for (ToDoList todolist : todolistDAO.getToDoList()) {
                 returnValue.append("\n<todolist>\n" +
-                                        "\t<idtodolist>" + todolist.getId() + "</idtodolist>\n" +
+                                        "\t<idtodolist>" + todolist.getIdToDoList() + "</idtodolist>\n" +
                                         "\t<nome>" + todolist.getNome() + "</nome>\n" +
                                         "\t<usuario>" + todolist.getUsuario() + "</usuario>\n" +
                                     "</todolist>\n");
@@ -332,11 +332,11 @@ public class Service {
 
     //Anotacoes
     public Object addAnotacao(Request request, Response response) {
-        String redirect = "<script>window.location.href = \"http://127.0.0.1:5500/novoguiadeinvestimentos/src/main/resources/formulario.html\"</script>";
+        String redirect = "<script>window.location.href = \"http://127.0.0.1:5500/novoguiadeinvestimentos/src/main/resources/diary.html\"</script>";
         Date datacriacao = new Date();
         String descricao = request.queryParams("Descricao");
 
-        Anotacoes anotacoes = new Anotacoes(datacriacao, descricao);
+        Anotacoes anotacoes = new Anotacoes(todolistID, datacriacao, descricao);
 
         anotacoesDAO.inserirAnotacao(anotacoes);
 
