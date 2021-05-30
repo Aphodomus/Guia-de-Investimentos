@@ -5,35 +5,30 @@ import model.Usuario;
 
 public class UsuarioDAO {
     private Connection conexao;
-    private int maxId;
 
     public UsuarioDAO() {
 		conexao = null;
 	}
 
-    public int getMaxCodigo() {
-		return maxId;
-	}
-
     public boolean conectar() {
-		String driverName = "org.postgresql.Driver";                    
-		String serverName = "localhost"; // Nome da azure que ela vai nos fornecer
-		String mydatabase = "aindanaodefinido"; // Eu tenho que criar na azure
+    	String driverName = "org.postgresql.Driver";                                 
+		String serverName = "projetosirius.postgres.database.azure.com"; // Nome da azure que ela vai nos fornecer
+		String mydatabase = "sirius"; // Eu tenho que criar na azure
 		int porta = 5432; // Vou escolher na azure
-		String url = "jdbc:postgresql:// " + serverName + ":" + porta +"/" + mydatabase + "?gssEncMode=disable"; // 
-		String username = "aindanaodefinido";
-		String password = "aindanaodefinido";
+		String url = "jdbc:postgresql://" + serverName + ":" + porta +"/" + mydatabase + "?gssEncMode=disable"; 
+		String username = "projetoSirius@projetosirius";
+		String password = "siriusProjeto01";
 		boolean status = false;
 
 		try {
 			Class.forName(driverName);
 			conexao = DriverManager.getConnection(url, username, password);
 			status = (conexao == null);
-			System.out.println("Conexão efetuada com o postgres!");
+			System.out.println("Conexao usuario efetuada");
 		} catch (ClassNotFoundException e) { 
-			System.err.println("Conexão NÃO efetuada com o postgres -- Driver não encontrado -- " + e.getMessage());
+			System.err.println("Conexao NaO efetuada com o postgres -- Driver nao encontrado -- " + e.getMessage());
 		} catch (SQLException e) {
-			System.err.println("Conexão NÃO efetuada com o postgres -- " + e.getMessage());
+			System.err.println("Conexao NaO efetuada com o postgres -- " + e.getMessage());
 		}
 
 		return status;
@@ -56,15 +51,12 @@ public class UsuarioDAO {
 
 		try {  
 			Statement st = conexao.createStatement();
-			st.executeUpdate("INSERT INTO usuario (id, primeiroNome, segundoNome, idade, senha, email, sexo) "
-					       + "VALUES (" + usuario.getId() + ", '" + usuario.getPrimeiroNome() + "', '"  
-					       + usuario.getSegundoNome() + "', '" + usuario.getIdade() + "', '" + usuario.getSenha() 
+			st.executeUpdate("INSERT INTO USUARIO (Nome, Sobrenome, Idade, Senha, Email, Sexo) "
+					       + "VALUES ('" + usuario.getNome() + "', '"  
+					       + usuario.getSobreNome() + "', '" + usuario.getIdade() + "', '" + usuario.getSenha() 
                            + "', '" + usuario.getEmail() + "', '" + usuario.getSexo() +"');");
 			st.close();
 			status = true;
-
-            //Somar mais um ao maxID
-            this.maxId = this.maxId + 1;
 
 			System.out.println("Insercao do usuario com id [" + usuario.getId() + "] efetuada com sucesso.");
 
@@ -80,9 +72,9 @@ public class UsuarioDAO {
 
 		try {  
 			Statement st = conexao.createStatement();
-			String sql = "UPDATE usuario SET primeiroNome = '" + usuario.getPrimeiroNome() + "', segundoNome = '"  
-				       + usuario.getSegundoNome() + "', idade = '" + usuario.getIdade() + "', senha = '" + usuario.getSenha() + 
-                       "', email = '" + usuario.getEmail() + "', sexo = '" + usuario.getSexo() + "'" + " WHERE id = " + usuario.getId();
+			String sql = "UPDATE USUARIO SET Nome = '" + usuario.getNome() + "', Sobrenome = '"  
+				       + usuario.getSobreNome() + "', Idade = '" + usuario.getIdade() + "', Senha = '" + usuario.getSenha() + 
+                       "', Email = '" + usuario.getEmail() + "', Sexo = '" + usuario.getSexo() + "'" + " WHERE Id = " + usuario.getId();
 			st.executeUpdate(sql);
 			st.close();
 			status = true;
@@ -100,14 +92,9 @@ public class UsuarioDAO {
 
 		try {  
 			Statement st = conexao.createStatement();
-			st.executeUpdate("DELETE FROM usuario WHERE id = " + id);
+			st.executeUpdate("DELETE FROM USUARIO WHERE id_usuario = " + id);
 			st.close();
 			status = true;
-
-            //subtrair um ao maxID
-            if (this.maxId > 0) {
-                this.maxId = this.maxId - 1;
-            }
 
 			System.out.println("Remocao do Usuario com id [" + id + "] efetuada com sucesso.");
 		} catch (SQLException u) {  
@@ -122,15 +109,15 @@ public class UsuarioDAO {
 		
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			ResultSet rs = st.executeQuery("SELECT * FROM usuario");		
+			ResultSet rs = st.executeQuery("SELECT * FROM USUARIO");		
 	         if(rs.next()){
 	             rs.last();
 	             usuarios = new Usuario[rs.getRow()];
 	             rs.beforeFirst();
 
 	             for(int i = 0; rs.next(); i++) {
-	                usuarios[i] = new Usuario(rs.getInt("id"), rs.getString("primeiroNome"), 
-	                		                  rs.getString("segundoNome"), rs.getInt("idade"), rs.getString("senha"), rs.getString("email"), rs.getString("sexo"));
+	                usuarios[i] = new Usuario(rs.getString("Nome"), 
+	                		                  rs.getString("Sobrenome"), rs.getInt("Idade"), rs.getString("Senha"), rs.getString("Email"), rs.getString("Sexo"));
 	             }
 	          }
 	          st.close();
@@ -146,15 +133,15 @@ public class UsuarioDAO {
 		
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			ResultSet rs = st.executeQuery("SELECT * FROM usuario WHERE usuario.idade >= 60");		
+			ResultSet rs = st.executeQuery("SELECT * FROM USUARIO WHERE USUARIO.Idade >= 60");		
 	         if(rs.next()){
 	             rs.last();
 	             usuarios = new Usuario[rs.getRow()];
 	             rs.beforeFirst();
 
 	             for(int i = 0; rs.next(); i++) {
-		                usuarios[i] = new Usuario(rs.getInt("id"), rs.getString("primeiroNome"), 
-                                                  rs.getString("segundoNome"), rs.getInt("idade"), rs.getString("senha"), rs.getString("email"), rs.getString("sexo"));
+		                usuarios[i] = new Usuario(rs.getString("Nome"), 
+                                                  rs.getString("Sobrenome"), rs.getInt("Idade"), rs.getString("Senha"), rs.getString("Email"), rs.getString("Sexo"));
 	             }
 	          }
 	          st.close();
@@ -170,11 +157,11 @@ public class UsuarioDAO {
 		
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			ResultSet rs = st.executeQuery("SELECT * FROM usuario WHERE usuario.id = " + id);
+			ResultSet rs = st.executeQuery("SELECT * FROM USUARIO WHERE USUARIO.id_usuario = " + id);
 
 			if (rs.next()) {
-				usuarios = new Usuario(rs.getInt("id"), rs.getString("primeiroNome"), 
-                                       rs.getString("segundoNome"), rs.getInt("idade"), rs.getString("senha"), rs.getString("email"), rs.getString("sexo"));
+				usuarios = new Usuario(rs.getString("Nome"), 
+                                       rs.getString("Sobrenome"), rs.getInt("Idade"), rs.getString("Senha"), rs.getString("Email"), rs.getString("Sexo"));
 			}
 
 	        st.close();
@@ -183,5 +170,89 @@ public class UsuarioDAO {
 		}
 
 		return usuarios;
+	}
+
+	public boolean pesquisarEmail(String email) {
+		boolean resp = false;
+
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery("SELECT USUARIO.email FROM USUARIO WHERE USUARIO.email = '" + email + "'");		
+	         
+			if (rs.next()) {
+				String frase = rs.getString("email");
+				if (frase.equals(email)) {
+					resp = true;
+				}
+			}
+
+	        st.close();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+
+		return resp;
+	}
+
+	public boolean pesquisarSenha(String senha) {
+		boolean resp = false;
+
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery("SELECT USUARIO.senha FROM USUARIO WHERE USUARIO.senha = '" + senha + "'");		
+	         
+			if (rs.next()) {
+				String frase = rs.getString("senha");
+				if (frase.equals(senha)) {
+					resp = true;
+				}
+			}
+
+	        st.close();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+
+		return resp;
+	}
+
+	public int idUsuario(Usuario usuario) {
+		int resp = -1;
+
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery("SELECT USUARIO.id_usuario FROM USUARIO WHERE USUARIO.email = '" + usuario.getEmail() + "' AND USUARIO.senha = '" + usuario.getSenha() + "'");		
+	         
+			if (rs.next()) {
+				int id = rs.getInt("id_usuario");
+				resp = id;
+			}
+
+	        st.close();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+
+		return resp;
+	}
+
+	public int procurarEmailSenha(String email, String senha) {
+		int resp = 0;
+
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery("SELECT USUARIO.id_usuario FROM USUARIO WHERE USUARIO.senha = '" + senha + "' AND USUARIO.email = '" + email + "'");		
+	         
+			if (rs.next()) {
+				int frase = rs.getInt("id_usuario");
+				resp = frase;
+			}
+
+	        st.close();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		
+		return resp;
 	}
 }
