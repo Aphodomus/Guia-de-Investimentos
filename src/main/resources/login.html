@@ -60,7 +60,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="login" class="text-info">Senha</label><br>
-                                <input type="password" name="Senha" id="txt_login" placeholder="francisco123" class="form-control">
+                                <div id="erroForca"></div>
+                                <input type="password" name="Senha" id="algo" placeholder="francisco123" class="form-control" onkeyup="ValidarSenhaForca()">
                             </div>
                             <div class="form-group">
                                 <label for="primeironome" class="text-info">Primeiro nome</label><br>
@@ -99,7 +100,8 @@
             </div>
         </div>
     </div>
-
+    
+    <script src="scripts/senhaForca.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
