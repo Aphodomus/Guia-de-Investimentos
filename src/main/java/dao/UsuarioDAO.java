@@ -235,4 +235,24 @@ public class UsuarioDAO {
 
 		return resp;
 	}
+
+	public int procurarEmailSenha(String email, String senha) {
+		int resp = 0;
+
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+			ResultSet rs = st.executeQuery("SELECT USUARIO.id_usuario FROM USUARIO WHERE USUARIO.senha = '" + senha + "' AND USUARIO.email = '" + email + "'");		
+	         
+			if (rs.next()) {
+				int frase = rs.getInt("id_usuario");
+				resp = frase;
+			}
+
+	        st.close();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		
+		return resp;
+	}
 }

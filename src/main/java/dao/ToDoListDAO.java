@@ -62,7 +62,7 @@ public class ToDoListDAO{
 			st.close();
 			status = true;
 
-			System.out.println("Insercao do usuario com id [" + todolist.getId() + "] efetuada com sucesso.");
+			System.out.println("Insercao da todolist com id [" + todolist.getId() + "] efetuada com sucesso.");
 
 		} catch (SQLException u) {  
 			throw new RuntimeException(u);

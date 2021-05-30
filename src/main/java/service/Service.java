@@ -19,6 +19,7 @@ public class Service {
     private UsuarioDAO usuarioDAO;
     private ToDoListDAO todolistDAO;
     private AnotacoesDAO anotacoesDAO;
+    private int usuarioID = 0;
 
     public Service() {
         try {
@@ -66,7 +67,9 @@ public class Service {
 
         Date date = new Date();
 
-        Anotacoes anotacao = new Anotacoes(idToDoList, date , "Sua primeira anotação");
+        Anotacoes anotacao = new Anotacoes(idToDoList, date, "Sua primeira anotação");
+
+        anotacoesDAO.inserirAnotacao(anotacao);
 
         response.status(201);
 
@@ -85,6 +88,25 @@ public class Service {
 
         if (resp1 == true && resp2 == true) {
             response.status(201);
+
+            usuarioID = usuarioDAO.procurarEmailSenha(Email, Senha);
+
+            return redirect;
+        }
+
+        response.status(201);
+
+        return redirect2;
+    }
+
+    public Object verificar(Request request, Response response) {
+        String redirect = "<script>window.location.href = \"http://127.0.0.1:5500/novoguiadeinvestimentos/src/main/resources/diary.html\"</script>";
+        String redirect2 = "<script>window.location.href = \"http://127.0.0.1:5500/novoguiadeinvestimentos/src/main/resources/services.html\"</script>";
+
+        if (usuarioID >= 0) {
+            response.status(201);
+
+            System.out.println(usuarioID);
 
             return redirect;
         }

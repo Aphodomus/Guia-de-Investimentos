@@ -56,8 +56,8 @@ public class AnotacoesDAO {
 
 		try {  
 			Statement st = conexao.createStatement();
-			st.executeUpdate("INSERT INTO anotacoes (datacriacao, descricao) "
-					       + "VALUES ('" + anotacoes.getDataCriacao() + "', '" + anotacoes.getDescricao() + "');");
+			st.executeUpdate("INSERT INTO anotacoes (todolist, datacriacao, descricao) "
+					       + "VALUES ("+ anotacoes.getToDoList() + ", '" + anotacoes.getDataCriacao() + "', '" + anotacoes.getDescricao() + "');");
 			st.close();
 			status = true;
 

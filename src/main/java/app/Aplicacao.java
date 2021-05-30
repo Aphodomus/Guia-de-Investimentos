@@ -24,6 +24,8 @@ public class Aplicacao {
 
         post("/login", (request, response) -> service.logarUsuario(request, response));
 
+        post("/verificar", (request, response) -> service.verificar(request, response));
+
         //Anotacoes
         post("/anotacoes", (request, response) -> service.addAnotacao(request, response));
 
